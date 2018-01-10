@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+@import '../../styles/colors.scss';
+
+body {
+  background-color: #2b2b2b;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  .btn-default {
+    &:focus {
+      outline: none !important;
+    }
+  }
+  .btn-primary {
+    background-color: $mainRed;
+    border-color: $secondaryRed;
+    &:active {
+      background-color: $secondaryRed !important;
+      border-color: $secondaryRed !important;
+    }
+    &:hover {
+      background-color: $secondaryRed;
+      border-color: $secondaryRed;
+    }
+    &:focus {
+      background-color: $mainRed !important;
+      outline: none !important;
+    }
+  }
+}
