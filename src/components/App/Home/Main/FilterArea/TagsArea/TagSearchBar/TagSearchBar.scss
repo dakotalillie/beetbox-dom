@@ -1,0 +1,30 @@
+@import '../../../../../../../styles/colors.scss';
+
+.tag_search_bar {
+  padding-top: 8px;
+  position: relative;
+  .tag_search_input {
+    background-color: inherit;
+    border: 0;
+    border-bottom: 1px solid $darkGrey;
+    border-radius: 0;
+    box-shadow: none;
+    color: $darkGrey;
+    font-size: 1.7rem;
+    // margin-left: 20px;
+    width: 100%;
+  }
+  .clear_search_button {
+    background-color: inherit;
+    border: 0;
+    color: $darkGrey;
+    font-size: 16px;
+    padding: 0;
+    position: absolute;
+    right: 6px;
+    top: 13px;
+    &:active {
+      background-color: inherit;
+    }
+  }
+}

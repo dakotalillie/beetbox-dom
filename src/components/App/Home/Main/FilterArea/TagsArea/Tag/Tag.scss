@@ -1,0 +1,24 @@
+@import '../../../../../../../styles/colors.scss';
+
+.tag {
+  display: inline-block;
+  margin-right: 8px;
+  .btn.tag_button {
+    border-radius: 15px;
+    border-color: $darkGrey;
+    color: $darkGrey;
+    font-size: 1.4rem;
+    &:hover {
+      background-color: white;
+      border-color: $darkGrey;
+    }
+    .tag_name {
+      display: inline-block;
+      margin-right: 8px;
+    }
+    .tag_count {
+      color: $mainRed;
+      display: inline-block;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-@import '../../styles/colors.scss';
+@import '../../../../../../styles/colors.scss';
 
 .search_bar {
   position: relative;
@@ -7,6 +7,10 @@
     border-radius: 0;
     padding: 30px;
     color: white;
+    &:focus {
+      border-color: inherit !important;
+      box-shadow: none !important;
+    }
   }
   .clear_search_button {
     background-color: inherit;

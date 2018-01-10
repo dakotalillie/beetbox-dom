@@ -1,16 +1,16 @@
 import React from 'react';
 import { Grid, Row } from 'react-bootstrap';
 import './Main.css';
-import HamburgerIcon from '../HamburgerIcon/HamburgerIcon';
-import Header from '../Header/Header';
-import FilterArea from '../FilterArea/FilterArea';
+import HamburgerIcon from './HamburgerIcon/HamburgerIcon';
+import Header from './Header/Header';
+import FilterArea from './FilterArea/FilterArea';
 
 const Main = () => {
   return (
     <div className="main">
       <HamburgerIcon />
       <Grid className="main_grid">
-        <Row>
+        <Row className="header_row">
           <Header />
         </Row>
         <Row>
