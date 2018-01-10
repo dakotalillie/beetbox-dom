@@ -1,0 +1,24 @@
+@import '../../styles/colors.scss';
+
+.search_bar {
+  position: relative;
+  .main_search_input {
+    background-color: inherit;
+    border-radius: 0;
+    padding: 30px;
+    color: white;
+  }
+  .clear_search_button {
+    background-color: inherit;
+    border: 0;
+    color: $lightGrey;
+    font-size: 20px;
+    padding: 0;
+    position: absolute;
+    right: 20px;
+    top: 18px;
+    &:active {
+      background-color: inherit;
+    }
+  }
+}
