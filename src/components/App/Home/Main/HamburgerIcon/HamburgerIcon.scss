@@ -6,11 +6,15 @@
     padding: 0;
     position: fixed;
     top: 20px;
+    transition: left 0.3s ease-out;
     &:active {
       background-color: inherit;
     }
     &:focus {
       outline: none;
+    }
+    &.open {
+      left: 395px;
     }
     .hamburger_icon_glyph {
       color: white;

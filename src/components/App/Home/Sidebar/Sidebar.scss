@@ -1,0 +1,31 @@
+@import '../../../../styles/colors.scss';
+
+$color1: #487be6;
+$color2: #b4ec51;
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 375px;
+  height: 100vh;
+  background-color: $lightGrey;
+  border-right: 6px solid;
+  // border-color: linear-gradient(red, yellow);
+  padding: 10px;
+  color: $darkGrey;
+  // border-width: 6px;
+  // border-style: solid;
+  -webkit-border-image: -webkit-gradient(
+      linear,
+      0 0,
+      0 100%,
+      from($color1),
+      to($color2)
+    )
+    1 100%;
+  -webkit-border-image: -webkit-linear-gradient($color1, $color2) 1 100%;
+  -moz-border-image: -moz-linear-gradient($color1, $color2) 1 100%;
+  -o-border-image: -o-linear-gradient($color1, $color2) 1 100%;
+  border-image: linear-gradient(to bottom, $color1, $color2) 1 100%;
+}

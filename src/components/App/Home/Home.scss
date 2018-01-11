@@ -1,0 +1,15 @@
+.sidebar-enter {
+  left: -375px;
+  &.sidebar-enter-active {
+    left: 0;
+    transition: left 0.3s ease-out;
+  }
+}
+
+.sidebar-leave {
+  left: 0;
+  &.sidebar-leave-active {
+    left: -375px;
+    transition: left 0.3s ease-out;
+  }
+}

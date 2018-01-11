@@ -1,6 +1,6 @@
 import React from 'react';
 import SampleBrowserHeader from './SampleBrowserHeader/SampleBrowserHeader';
-import SampleBrowser from './SampleBrowser/SampleBrowser';
+import SampleBrowser from '../../../../../containers/SampleBrowser';
 
 const SampleBrowserArea = () => {
   return (

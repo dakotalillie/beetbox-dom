@@ -1,11 +1,18 @@
 .main {
   .main_grid {
-    margin-top: 80px;
-    .header_row {
-      margin-bottom: 30px;
-    }
-    .filter_row {
-      margin-bottom: 22px;
+    margin-top: 70px;
+    .content {
+      margin-left: 0;
+      transition: margin-left 0.3s ease-out;
+      &.pushed {
+        margin-left: 187.5px;
+      }
+      .header_row {
+        margin-bottom: 30px;
+      }
+      .filter_row {
+        margin-bottom: 22px;
+      }
     }
   }
 }

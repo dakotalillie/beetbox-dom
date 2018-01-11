@@ -2,9 +2,13 @@ import React from 'react';
 import { Glyphicon, Table } from 'react-bootstrap';
 import './SampleBrowser.css';
 
-const SampleBrowser = () => {
+const SampleBrowser = ({ sidebarOpen }) => {
   return (
-    <Table striped bordered className="sample_browser">
+    <Table
+      striped
+      bordered
+      className={'sample_browser' + (sidebarOpen ? ' pushed' : '')}
+    >
       <thead>
         <tr>
           <th />
@@ -13,7 +17,7 @@ const SampleBrowser = () => {
           <th>Type</th>
           <th>Length</th>
           <th className="favorite_column">
-            <Glyphicon glyph="heart" />
+            <Glyphicon glyph="heart-empty" />
           </th>
           <th>Tempo</th>
           <th>Key</th>

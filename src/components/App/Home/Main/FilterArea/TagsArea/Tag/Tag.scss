@@ -12,6 +12,9 @@
       background-color: white;
       border-color: $darkGrey;
     }
+    &:focus {
+      background-color: white;
+    }
     .tag_name {
       display: inline-block;
       margin-right: 8px;

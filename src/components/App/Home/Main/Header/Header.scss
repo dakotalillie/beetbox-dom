@@ -1,33 +1,39 @@
-@import '../../styles/colors.scss';
+@import '../../../../../styles/colors.scss';
 
 .header {
-  .header_title {
-    display: inline-block;
-    font-size: 6rem;
-  }
-  .toggle_filter_area_button {
-    background-color: transparent;
-    border: none;
-    margin-left: 20px;
+  position: relative;
+  .container {
     padding: 0;
-    vertical-align: super;
-    &:active {
-      background-color: inherit;
+    .header_title {
+      display: inline-block;
+      font-size: 6rem;
     }
-    &:focus {
-      outline: none;
+    .toggle_filter_area_button {
+      background-color: transparent;
+      border: none;
+      margin-left: 20px;
+      padding: 0;
+      vertical-align: super;
+      &:active {
+        background-color: inherit;
+      }
+      &:focus {
+        outline: none;
+      }
+      .toggle_filter_area_glyph {
+        color: $lightGrey;
+        font-size: 24px;
+      }
     }
-    .toggle_filter_area_glyph {
-      color: $lightGrey;
-      font-size: 24px;
-    }
-  }
-  .header_buttons {
-    display: inline-block;
-    float: right;
-    margin-top: 13px;
-    .reset_filters_button {
-      margin-left: 15px;
+    .pull_right_col {
+      text-align: right;
+      .header_buttons {
+        display: inline-block;
+        margin-top: 13px;
+        .reset_filters_button {
+          margin-left: 15px;
+        }
+      }
     }
   }
 }

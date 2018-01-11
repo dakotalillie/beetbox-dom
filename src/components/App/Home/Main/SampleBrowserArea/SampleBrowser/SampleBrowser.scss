@@ -3,6 +3,11 @@
 .sample_browser {
   border: none;
   margin-top: 18px;
+  max-width: calc(100% + 187.5px);
+  transition: width 0.3s ease-out;
+  &.pushed {
+    width: calc(100% + 187.5px);
+  }
   thead > tr > th,
   tbody > tr > td {
     border-color: $darkGrey;

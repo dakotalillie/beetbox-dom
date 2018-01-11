@@ -1,0 +1,26 @@
+@import '../../../../../styles/colors.scss';
+
+.sidebar_browser {
+  margin-top: 40px;
+  .main_icon {
+    color: $mainRed;
+    font-size: 2.5rem;
+  }
+  .title_button {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    color: $darkGrey;
+    font-size: 2rem;
+    margin-left: 15px;
+    padding: 0;
+    vertical-align: text-bottom;
+    &:active {
+      background-color: inherit;
+    }
+    .glyphicon {
+      font-size: 1.5rem;
+      margin-left: 6px;
+    }
+  }
+}
