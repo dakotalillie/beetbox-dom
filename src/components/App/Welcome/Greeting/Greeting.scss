@@ -1,0 +1,26 @@
+.greeting {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 800px;
+  height: 275px;
+  padding: 20px;
+  text-align: center;
+  .title {
+    font-size: 8rem;
+    font-weight: 700;
+  }
+  .subtitle {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  button.btn {
+    width: 150px;
+  }
+  .login_button {
+    margin-right: 15px;
+  }
+}

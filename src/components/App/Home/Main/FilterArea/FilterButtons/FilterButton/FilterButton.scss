@@ -1,9 +1,10 @@
-@import '../../styles/colors.scss';
+@import '../../../../../../../styles/colors.scss';
 
 .filter_button {
   text-align: center;
   .btn {
     background-color: $lightGrey;
+    font-size: 1.5rem;
     padding: 15px 0;
     width: 100%;
   }

@@ -1,0 +1,49 @@
+@import '../../../../../../styles/colors.scss';
+
+.sample_browser_header {
+  .sample_browser_header_container {
+    padding: 0;
+    .left_buttons {
+      button.btn {
+        background-color: transparent;
+        border: 0;
+        color: white;
+        font-size: 1.6rem;
+        padding: 0;
+        vertical-align: super;
+      }
+      .horizontal_divider {
+        margin: 0 20px 0;
+        height: 20px;
+        border: 0.5px solid $darkGrey;
+      }
+      * {
+        display: inline-block;
+      }
+    }
+    .result_count_display {
+      text-align: center;
+      color: $darkGrey;
+      font-size: 1.6rem;
+    }
+    .right_buttons {
+      text-align: right;
+      button.btn {
+        background-color: transparent;
+        border: 0;
+        color: white;
+        font-size: 1.6rem;
+        padding: 0;
+        vertical-align: super;
+      }
+      .horizontal_divider {
+        margin: 0 20px 0;
+        height: 20px;
+        border: 0.5px solid $darkGrey;
+      }
+      * {
+        display: inline-block;
+      }
+    }
+  }
+}
