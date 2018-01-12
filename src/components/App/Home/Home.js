@@ -1,6 +1,6 @@
 import React from 'react';
-import Main from '../../../containers/Main.js';
-import Sidebar from './Sidebar/Sidebar';
+import Main from '../../../containers/Main';
+import Sidebar from '../../../containers/Sidebar';
 import { CSSTransitionGroup } from 'react-transition-group';
 import './Home.css';
 

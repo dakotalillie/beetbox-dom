@@ -9,10 +9,12 @@ class TagSearchBar extends React.Component {
 
   handleChange = e => {
     this.setState({ value: e.target.value });
+    this.props.handleSearch(e.target.value);
   };
 
   handleClick = e => {
     this.setState({ value: '' });
+    this.props.handleSearch('');
   };
   render = () => {
     return (

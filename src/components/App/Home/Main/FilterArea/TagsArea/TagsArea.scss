@@ -4,5 +4,7 @@
 .tags_area {
   background-color: $lightGrey;
   height: 110px;
+  overflow-x: scroll;
   padding: 0 20px;
+  white-space: nowrap;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Glyphicon, Table } from 'react-bootstrap';
 import './SampleBrowser.css';
 
-const SampleBrowser = ({ sidebarOpen }) => {
+const SampleBrowser = ({ sidebarOpen, samples, sampleSearch }) => {
   return (
     <Table
       striped
@@ -24,49 +24,40 @@ const SampleBrowser = ({ sidebarOpen }) => {
           <th>Rating</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>
-            <input type="checkbox" />
-          </td>
-          <td />
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td />
-          <td />
-          <td />
-          <td />
-        </tr>
-        <tr>
-          <td>
-            <input type="checkbox" />
-          </td>
-          <td />
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td />
-          <td />
-          <td />
-          <td />
-        </tr>
-        <tr>
-          <td>
-            <input type="checkbox" />
-          </td>
-          <td />
-          <td>Larry the Bird</td>
-          <td />
-          <td>@twitter</td>
-          <td />
-          <td />
-          <td />
-          <td />
-        </tr>
-      </tbody>
+      <tbody>{mapSamplesToRows(samples, sampleSearch)}</tbody>
     </Table>
   );
+};
+
+const mapSamplesToRows = (samples, sampleSearch) => {
+  const searched = Object.keys(samples).reduce((memo, key) => {
+    const sample = samples[key];
+    const query = new RegExp(sampleSearch, 'i');
+    if (sample.name.match(query)) {
+      memo[key] = sample;
+    }
+    return memo;
+  }, {});
+  return Object.keys(searched).map(key => {
+    const sample = searched[key];
+    return (
+      <tr key={key}>
+        <td>
+          <input type="checkbox" />
+        </td>
+        <td />
+        <td>{sample.name}</td>
+        <td>{sample.sample_type}</td>
+        <td />
+        <td>
+          <Glyphicon glyph="heart-empty" />
+        </td>
+        <td>{sample.tempo ? sample.tempo : '--'}</td>
+        <td>{sample.key ? sample.key : '--'}</td>
+        <td />
+      </tr>
+    );
+  });
 };
 
 export default SampleBrowser;

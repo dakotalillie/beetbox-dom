@@ -3,8 +3,8 @@ import { Grid, Row } from 'react-bootstrap';
 import './Main.css';
 import HamburgerIcon from '../../../../containers/HamburgerIcon';
 import Header from './Header/Header';
-import FilterArea from './FilterArea/FilterArea';
-import SampleBrowserArea from './SampleBrowserArea/SampleBrowserArea';
+import FilterArea from '../../../../containers/FilterArea';
+import SampleBrowserArea from '../../../../containers/SampleBrowserArea';
 
 const Main = ({ sidebarOpen }) => {
   return (

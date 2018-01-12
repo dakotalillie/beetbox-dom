@@ -11,14 +11,11 @@ const currentUser = (state = { loading: true }, action) => {
     case REQUEST_CURRENT_USER:
       return { loading: true };
     case RECEIVE_CURRENT_USER:
-      if (action.payload.token) {
-        localStorage.setItem('token', action.payload.token);
+      if (action.payload.entities.user.token) {
+        localStorage.setItem('token', action.payload.entities.user.token);
       }
       return {
-        id: action.payload.id,
-        username: action.payload.username,
-        firstName: action.payload.firstName,
-        lastName: action.payload.lastName,
+        ...action.payload.entities.user,
         loading: false
       };
     default:

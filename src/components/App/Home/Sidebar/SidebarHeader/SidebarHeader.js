@@ -18,7 +18,7 @@ class SidebarHeader extends React.Component {
         >
           Log Out
         </Button>
-        <h3 className="name">Dakota</h3>
+        <h3 className="name">{this.props.currentUser.first_name}</h3>
         <Button className="notification_button">
           <Glyphicon glyph="bell" className="bell_glyph" />
         </Button>

@@ -8,11 +8,15 @@ class SearchBar extends React.Component {
   };
 
   handleChange = e => {
-    this.setState({ value: e.target.value });
+    this.setState({ value: e.target.value }, () =>
+      this.props.setSampleSearch(this.state.value)
+    );
   };
 
   handleClick = e => {
-    this.setState({ value: '' });
+    this.setState({ value: '' }, () =>
+      this.props.setSampleSearch(this.state.value)
+    );
   };
 
   render = () => {

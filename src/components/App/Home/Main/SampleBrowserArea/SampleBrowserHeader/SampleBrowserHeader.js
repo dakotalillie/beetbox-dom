@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Col, Grid, Row } from 'react-bootstrap';
 import './SampleBrowserHeader.css';
 
-const SampleBrowserHeader = () => {
+const SampleBrowserHeader = ({ count }) => {
   return (
     <div className="sample_browser_header">
       <Grid className="sample_browser_header_container">
@@ -15,7 +15,7 @@ const SampleBrowserHeader = () => {
             </div>
           </Col>
           <Col xs={4}>
-            <div className="result_count_display">2,789 Results</div>
+            <div className="result_count_display">{count} Results</div>
           </Col>
           <Col xs={4}>
             <div className="right_buttons">
