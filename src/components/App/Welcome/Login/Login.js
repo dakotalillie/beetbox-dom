@@ -28,7 +28,7 @@ class Login extends React.Component {
     // if (this.checkForBlankFields()) {
     //   return;
     // }
-    // this.props.login(this.state.username.value, this.state.password.value);
+    this.props.login(this.state.username.value, this.state.password.value);
   };
 
   checkForBlankFields = () => {

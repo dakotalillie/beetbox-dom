@@ -1,7 +1,7 @@
 import React from 'react';
 import './Welcome.css';
 import Greeting from './Greeting/Greeting';
-import Login from './Login/Login';
+import Login from '../../../containers/Login';
 import Signup from './Signup/Signup';
 
 class Welcome extends React.Component {
