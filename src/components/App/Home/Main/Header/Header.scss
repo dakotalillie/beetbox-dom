@@ -27,6 +27,9 @@
     }
     .pull_right_col {
       text-align: right;
+      .hidden_file_upload {
+        display: none;
+      }
       .header_buttons {
         display: inline-block;
         margin-top: 13px;

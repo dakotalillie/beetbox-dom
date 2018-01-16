@@ -1,7 +1,8 @@
 import {
   REQUEST_CURRENT_USER,
   RECEIVE_CURRENT_USER,
-  NO_TOKEN
+  NO_TOKEN,
+  RECEIVE_ADDED_SAMPLES
 } from '../actions/actionTypes';
 
 const currentUser = (state = { loading: true }, action) => {
@@ -18,6 +19,12 @@ const currentUser = (state = { loading: true }, action) => {
         ...action.payload.entities.user,
         loading: false
       };
+    case RECEIVE_ADDED_SAMPLES:
+      const newSamples = [...state.samples];
+      for (let sample of action.payload) {
+        newSamples.push(sample.id);
+      }
+      return { ...state, samples: newSamples };
     default:
       return state;
   }

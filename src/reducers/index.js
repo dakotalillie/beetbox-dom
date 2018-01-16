@@ -7,6 +7,10 @@ import libraries from './libraries';
 import samples from './samples';
 import tags from './tags';
 import sampleSearch from './sampleSearch';
+import selectedSamples from './selectedSamples';
+import focusedSample from './focusedSample';
+import displayedSamples from './displayedSamples';
+import dropzoneVisible from './dropzoneVisible';
 
 const rootReducer = combineReducers({
   isLoggedIn,
@@ -16,7 +20,11 @@ const rootReducer = combineReducers({
   samples,
   tags,
   sidebarOpen,
-  sampleSearch
+  sampleSearch,
+  selectedSamples,
+  focusedSample,
+  displayedSamples,
+  dropzoneVisible
 });
 
 export default rootReducer;

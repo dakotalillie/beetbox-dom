@@ -1,0 +1,30 @@
+@import '../../../../../../../styles/colors.scss';
+
+table > tbody > tr.sample_row {
+  .album_art {
+    padding: 5;
+    position: relative;
+    width: 30px;
+    img {
+      width: 20px;
+    }
+    .play_button {
+      border-radius: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      border: 0;
+      color: white;
+      left: 0;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      span.glyphicon {
+        margin-left: -2px;
+      }
+    }
+  }
+  &.focused {
+    background-color: $mainRed;
+    color: white;
+  }
+}

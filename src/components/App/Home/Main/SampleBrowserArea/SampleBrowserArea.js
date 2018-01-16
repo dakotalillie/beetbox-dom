@@ -4,17 +4,35 @@ import SampleBrowser from './SampleBrowser/SampleBrowser';
 
 const SampleBrowserArea = ({
   currentUser,
-  samples,
+  displayedSamples,
   sampleSearch,
-  sidebarOpen
+  sidebarOpen,
+  downloadSamples,
+  toggleSampleSelect,
+  selectedSamples,
+  focusedSample,
+  changeFocusedSample,
+  toggleAllSamplesSelect,
+  dropzoneVisible
 }) => {
   return (
     <div className="sample_browser_area">
-      <SampleBrowserHeader count={currentUser.samples.length} />
+      <SampleBrowserHeader
+        count={currentUser.samples.length}
+        downloadSamples={downloadSamples}
+        selectedSamples={selectedSamples}
+        toggleAllSamplesSelect={toggleAllSamplesSelect}
+        displayedSamples={displayedSamples}
+      />
       <SampleBrowser
         sidebarOpen={sidebarOpen}
-        samples={samples}
+        displayedSamples={displayedSamples}
         sampleSearch={sampleSearch}
+        toggleSampleSelect={toggleSampleSelect}
+        focusedSample={focusedSample}
+        changeFocusedSample={changeFocusedSample}
+        selectedSamples={selectedSamples}
+        dropzoneVisible={dropzoneVisible}
       />
     </div>
   );

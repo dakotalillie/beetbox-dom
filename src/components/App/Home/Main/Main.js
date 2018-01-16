@@ -6,14 +6,14 @@ import Header from './Header/Header';
 import FilterArea from '../../../../containers/FilterArea';
 import SampleBrowserArea from '../../../../containers/SampleBrowserArea';
 
-const Main = ({ sidebarOpen }) => {
+const Main = ({ sidebarOpen, addSamples }) => {
   return (
     <div className="main">
       <HamburgerIcon />
       <Grid className="main_grid">
         <div className={'content' + (sidebarOpen ? ' pushed' : '')}>
           <Row className="header_row">
-            <Header />
+            <Header addSamples={addSamples} />
           </Row>
           <Row className="filter_row">
             <FilterArea />
