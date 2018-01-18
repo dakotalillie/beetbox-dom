@@ -38,8 +38,16 @@
     tbody > tr:nth-of-type(even) {
       background-color: $darkestGrey;
     }
-    thead > tr > .favorite_column {
-      width: 30px;
+    thead > tr {
+      position: relative;
+      .favorite_column {
+        width: 30px;
+      }
+      .order_arrow {
+        cursor: pointer;
+        float: right;
+        margin-top: 5px;
+      }
     }
   }
   .dropzone {

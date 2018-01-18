@@ -7,7 +7,9 @@ const SampleBrowserHeader = ({
   downloadSamples,
   selectedSamples,
   toggleAllSamplesSelect,
-  displayedSamples
+  displayedSamples,
+  deleteSamples,
+  toggleEditSampleModal
 }) => {
   return (
     <div className="sample_browser_header">
@@ -42,9 +44,24 @@ const SampleBrowserHeader = ({
           </Col>
           <Col xs={4}>
             <div className="right_buttons">
-              <Button className="select_all_button">Edit</Button>
+              <Button
+                className="select_all_button"
+                onClick={() =>
+                  selectedSamples.length ? toggleEditSampleModal() : null
+                }
+              >
+                Edit
+              </Button>
               <div className="horizontal_divider" />
-              <Button>Delete</Button>
+              <Button
+                onClick={() => {
+                  if (selectedSamples.length) {
+                    deleteSamples(selectedSamples.map(sample => sample.id));
+                  }
+                }}
+              >
+                Delete
+              </Button>
             </div>
           </Col>
         </Row>

@@ -1,11 +1,15 @@
 import { connect } from 'react-redux';
 import Home from '../components/App/Home/Home';
-import { changeFocusedSample } from '../actions';
+import { receiveAddedSample, toggleEditSampleModal } from '../actions';
 
 const mapStateToProps = state => ({
   sidebarOpen: state.sidebarOpen,
-  focusedSample: state.focusedSample,
-  displayedSamples: state.displayedSamples
+  currentUser: state.currentUser,
+  editSampleModalOpen: state.editSampleModalOpen,
+  selectedSamples: state.selectedSamples.map(id => state.samples[id])
 });
 
-export default connect(mapStateToProps, { changeFocusedSample })(Home);
+export default connect(mapStateToProps, {
+  receiveAddedSample,
+  toggleEditSampleModal
+})(Home);

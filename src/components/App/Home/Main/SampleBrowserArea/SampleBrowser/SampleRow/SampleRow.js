@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Glyphicon } from 'react-bootstrap';
+import ReactStars from 'react-stars';
 import './SampleRow.css';
 import missingAlbumArt from '../../../../../../../assets/img/missing_albumart.jpg';
 
@@ -72,16 +73,33 @@ class SampleRow extends React.Component {
         </td>
         <td>{sample.name}</td>
         <td>{sample.sample_type}</td>
-        <td />
+        <td>{formatLength(sample.length)}</td>
         <td>
           <Glyphicon glyph="heart-empty" />
         </td>
         <td>{sample.tempo ? sample.tempo : '--'}</td>
         <td>{sample.key ? sample.key : '--'}</td>
-        <td />
+        <td>
+          <ReactStars count={5} size={15} half={false} />
+        </td>
       </tr>
     );
   };
 }
 
 export default SampleRow;
+
+// helpers
+
+const formatLength = length => {
+  const seconds = Math.round(length);
+  if (seconds <= 0) {
+    return `0:01`;
+  } else if (seconds < 10) {
+    return `0:0${seconds}`;
+  } else if (seconds >= 10 && seconds < 60) {
+    return `0:${seconds}`;
+  } else {
+    return seconds;
+  }
+};

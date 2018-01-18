@@ -1,8 +1,7 @@
 import {
   REQUEST_CURRENT_USER,
   RECEIVE_CURRENT_USER,
-  NO_TOKEN,
-  RECEIVE_ADDED_SAMPLES
+  NO_TOKEN
 } from '../actions/actionTypes';
 
 const currentUser = (state = { loading: true }, action) => {
@@ -15,16 +14,7 @@ const currentUser = (state = { loading: true }, action) => {
       if (action.payload.entities.user.token) {
         localStorage.setItem('token', action.payload.entities.user.token);
       }
-      return {
-        ...action.payload.entities.user,
-        loading: false
-      };
-    case RECEIVE_ADDED_SAMPLES:
-      const newSamples = [...state.samples];
-      for (let sample of action.payload) {
-        newSamples.push(sample.id);
-      }
-      return { ...state, samples: newSamples };
+      return { ...action.payload.entities.user, loading: false };
     default:
       return state;
   }

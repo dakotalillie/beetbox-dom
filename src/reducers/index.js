@@ -6,11 +6,9 @@ import folders from './folders';
 import libraries from './libraries';
 import samples from './samples';
 import tags from './tags';
-import sampleSearch from './sampleSearch';
+import filters from './filters/index';
 import selectedSamples from './selectedSamples';
-import focusedSample from './focusedSample';
-import displayedSamples from './displayedSamples';
-import dropzoneVisible from './dropzoneVisible';
+import editSampleModalOpen from './editSampleModalOpen';
 
 const rootReducer = combineReducers({
   isLoggedIn,
@@ -20,11 +18,9 @@ const rootReducer = combineReducers({
   samples,
   tags,
   sidebarOpen,
-  sampleSearch,
+  filters,
   selectedSamples,
-  focusedSample,
-  displayedSamples,
-  dropzoneVisible
+  editSampleModalOpen
 });
 
 export default rootReducer;

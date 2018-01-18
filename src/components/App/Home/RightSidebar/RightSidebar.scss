@@ -1,0 +1,129 @@
+@import '../../../../styles/colors.scss';
+
+$color1: #487be6;
+$color2: #b4ec51;
+
+.right_sidebar {
+  border-left: 6px solid;
+  color: $darkGrey;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 375px;
+  height: 100vh;
+  background-color: $lightGrey;
+  -webkit-border-image: -webkit-gradient(
+      linear,
+      0 0,
+      0 100%,
+      from($color1),
+      to($color2)
+    )
+    1 100%;
+  -webkit-border-image: -webkit-linear-gradient($color1, $color2) 1 100%;
+  -moz-border-image: -moz-linear-gradient($color1, $color2) 1 100%;
+  -o-border-image: -o-linear-gradient($color1, $color2) 1 100%;
+  border-image: linear-gradient(to bottom, $color1, $color2) 1 100%;
+  .form_container {
+    width: 100%;
+    .form-group > .form-control,
+    .input-group > .form-control {
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid $darkGrey;
+      border-radius: 0px;
+      box-shadow: none;
+      color: $darkestGrey;
+      &:focus {
+        border-color: $darkestGrey;
+        box-shadow: none;
+        outline: none;
+      }
+    }
+    .tempo_field {
+      text-align: center;
+    }
+    .input-group-addon {
+      background-color: transparent;
+      border: none;
+      color: $darkGrey;
+      font-size: 1.5rem;
+      padding: 0;
+      // padding-left: 10px;
+    }
+    .form-group > .form-control.italicized {
+      color: $darkGrey;
+      font-style: italic;
+    }
+    .centered {
+      text-align: center;
+      width: 100%;
+    }
+    .favorite_button {
+      cursor: pointer;
+      font-size: 3rem;
+      margin-top: 8px;
+      margin-left: -2px;
+      text-align: center;
+      width: 100%;
+      &.favorited {
+        color: $mainRed;
+      }
+    }
+    .favorite_stars {
+      display: inline-block;
+      margin-top: 9px;
+    }
+    .control-label {
+      width: 100%;
+      .remove_rating {
+        color: $darkGrey;
+        cursor: pointer;
+        float: right;
+        margin-top: 2px;
+      }
+    }
+    .dropdown.btn-group {
+      width: 100%;
+      .dropdown-toggle {
+        background-color: white;
+        // border: 1px solid $darkGrey;
+        // border-bottom: 1px solid $lightGrey;
+        border-radius: 3px;
+        color: $darkestGrey;
+        text-align: left;
+        width: 100%;
+        .caret {
+          float: right;
+          margin-top: 11px;
+        }
+      }
+      .key_dropdown_menu {
+        display: none;
+      }
+    }
+    .panel {
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+      color: $darkestGrey;
+      .panel-heading {
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid $darkGrey;
+        color: $darkestGrey;
+        padding: 10px 0px;
+        .glyphicon-triangle-right,
+        .glyphicon-triangle-bottom {
+          cursor: pointer;
+          font-size: 1.3rem;
+          float: right;
+          margin-top: 5px;
+        }
+      }
+    }
+    .no_margin {
+      margin-bottom: 0;
+    }
+  }
+}

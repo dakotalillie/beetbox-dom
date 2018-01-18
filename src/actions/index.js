@@ -5,10 +5,11 @@ import {
   NO_TOKEN,
   SET_SAMPLE_SEARCH,
   TOGGLE_SAMPLE_SELECT,
-  RECEIVE_ADDED_SAMPLES,
-  CHANGE_FOCUSED_SAMPLE,
+  RECEIVE_ADDED_SAMPLE,
   TOGGLE_ALL_SAMPLES_SELECT,
-  TOGGLE_DROPZONE
+  RECEIVE_DELETED_SAMPLES,
+  REORDER_SAMPLES,
+  TOGGLE_EDIT_SAMPLE_MODAL
 } from './actionTypes';
 import { normalize, schema } from 'normalizr';
 import { API_ROOT, headers, file_upload_headers } from '../constants';
@@ -40,6 +41,10 @@ export const receiveCurrentUser = json => {
   const normalizedData = normalize(json, user);
   const id = Object.keys(normalizedData.entities.user)[0];
   normalizedData.entities.user = normalizedData.entities.user[id];
+  delete normalizedData.entities.user.folders;
+  delete normalizedData.entities.user.libraries;
+  delete normalizedData.entities.user.tags;
+  delete normalizedData.entities.user.samples;
   return {
     type: RECEIVE_CURRENT_USER,
     payload: normalizedData
@@ -84,10 +89,12 @@ export const setSampleSearch = value => {
   };
 };
 
-export const receiveAddedSamples = json => {
+export const receiveAddedSample = json => {
   return {
-    type: RECEIVE_ADDED_SAMPLES,
-    payload: json
+    type: RECEIVE_ADDED_SAMPLE,
+    payload: {
+      sample: json.sample
+    }
   };
 };
 
@@ -97,11 +104,7 @@ export const addSamples = data => {
       method: 'POST',
       headers: file_upload_headers,
       body: data
-    })
-      .then(res => res.json())
-      .then(json => {
-        dispatch(receiveAddedSamples(json));
-      });
+    });
   };
 };
 
@@ -150,15 +153,6 @@ export const toggleSampleSelect = id => {
   };
 };
 
-export const changeFocusedSample = id => {
-  return {
-    type: CHANGE_FOCUSED_SAMPLE,
-    payload: {
-      id
-    }
-  };
-};
-
 export const toggleAllSamplesSelect = displayedIds => {
   return {
     type: TOGGLE_ALL_SAMPLES_SELECT,
@@ -168,8 +162,41 @@ export const toggleAllSamplesSelect = displayedIds => {
   };
 };
 
-export const toggleDropzone = () => {
+export const deleteSamples = sampleIds => {
+  return dispatch => {
+    return fetch(`${API_ROOT}/samples`, {
+      method: 'DELETE',
+      headers,
+      body: JSON.stringify({
+        sampleIds
+      })
+    })
+      .then(res => res.json())
+      .then(json => dispatch(receiveDeletedSamples(json)));
+  };
+};
+
+export const receiveDeletedSamples = sampleIds => {
   return {
-    type: TOGGLE_DROPZONE
+    type: RECEIVE_DELETED_SAMPLES,
+    payload: {
+      sampleIds
+    }
+  };
+};
+
+export const reorderSamples = (column, direction) => {
+  return {
+    type: REORDER_SAMPLES,
+    payload: {
+      column,
+      direction
+    }
+  };
+};
+
+export const toggleEditSampleModal = () => {
+  return {
+    type: TOGGLE_EDIT_SAMPLE_MODAL
   };
 };

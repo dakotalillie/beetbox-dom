@@ -1,42 +1,14 @@
 import React from 'react';
+import { CSSTransitionGroup } from 'react-transition-group';
+import { ActionCable } from 'react-actioncable-provider';
 import Main from '../../../containers/Main';
 import Sidebar from '../../../containers/Sidebar';
-import { CSSTransitionGroup } from 'react-transition-group';
+import RightSidebar from './RightSidebar/RightSidebar';
 import './Home.css';
 
 class Home extends React.Component {
-  componentWillMount = () => {
-    document.addEventListener('keyup', e => {
-      if (this.props.focusedSample) {
-        const oldIndex = this.props.displayedSamples.findIndex(
-          sam => sam.id === this.props.focusedSample
-        );
-        let newSampleId;
-        if (e.key === 'ArrowDown') {
-          if (oldIndex < this.props.displayedSamples.length - 1) {
-            newSampleId = this.props.displayedSamples[oldIndex + 1].id;
-            this.props.changeFocusedSample(newSampleId);
-          }
-        } else if (e.key === 'ArrowUp') {
-          if (oldIndex > 0) {
-            newSampleId = this.props.displayedSamples[oldIndex - 1].id;
-            this.props.changeFocusedSample(newSampleId);
-          }
-        }
-      }
-    });
-    document.addEventListener('dragover', e => {
-      const dt = e.dataTransfer;
-      if (
-        dt.types &&
-        (dt.types.indexOf
-          ? dt.types.indexOf('Files') !== -1
-          : dt.types.contains('Files'))
-      ) {
-        debugger;
-      }
-      debugger;
-    });
+  handleReceived = data => {
+    this.props.receiveAddedSample(data);
   };
   render = () => {
     return (
@@ -49,6 +21,14 @@ class Home extends React.Component {
         >
           {this.props.sidebarOpen ? <Sidebar /> : null}
         </CSSTransitionGroup>
+        <RightSidebar selectedSamples={this.props.selectedSamples} />
+        <ActionCable
+          channel={{
+            channel: 'UsersChannel',
+            userId: this.props.currentUser.id
+          }}
+          onReceived={this.handleReceived}
+        />
       </div>
     );
   };

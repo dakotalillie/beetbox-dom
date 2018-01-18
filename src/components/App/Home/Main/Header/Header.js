@@ -69,9 +69,6 @@ const uploadFiles = (files, addSamples) => {
     for (let i = 0; i < files.length; i++) {
       formData.append(`sample[fullres_file][${i}]`, files[i], files[i].name);
     }
-    for (let value of formData.values()) {
-      console.log(value);
-    }
     addSamples(formData);
   }
 };

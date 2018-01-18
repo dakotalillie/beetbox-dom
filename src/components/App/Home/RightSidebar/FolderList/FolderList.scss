@@ -1,0 +1,22 @@
+@import '../../../../../styles/colors.scss';
+
+.folder_list {
+  .tree-view {
+    color: $darkestGrey;
+    font-size: 1.5rem;
+    .tree-view_item {
+      margin-bottom: 5px;
+      .node_label {
+        display: inline-block;
+        input {
+          margin-right: 5px;
+          vertical-align: text-top;
+        }
+        label {
+          font-weight: 400;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

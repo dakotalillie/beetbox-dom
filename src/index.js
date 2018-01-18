@@ -4,9 +4,11 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { ActionCableProvider } from 'react-actioncable-provider';
 import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './reducers';
+import { API_WS_ROOT } from './constants';
 
 const store = createStore(
   rootReducer,
@@ -17,7 +19,9 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <ActionCableProvider url={API_WS_ROOT}>
+        <App />
+      </ActionCableProvider>
     </Router>
   </Provider>,
   document.getElementById('root')

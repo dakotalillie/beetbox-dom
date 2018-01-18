@@ -3,23 +3,29 @@ import SampleBrowserArea from '../components/App/Home/Main/SampleBrowserArea/Sam
 import {
   downloadSamples,
   toggleSampleSelect,
-  changeFocusedSample,
-  toggleAllSamplesSelect
+  toggleAllSamplesSelect,
+  addSamples,
+  deleteSamples,
+  reorderSamples,
+  toggleEditSampleModal
 } from '../actions';
+import { getDisplayedSamples } from '../selectors';
 
 const mapStateToProps = state => ({
   currentUser: state.currentUser,
-  displayedSamples: state.displayedSamples,
   sampleSearch: state.sampleSearch,
   sidebarOpen: state.sidebarOpen,
   selectedSamples: [...state.selectedSamples].map(id => state.samples[id]),
-  focusedSample: state.focusedSample,
-  dropzoneVisible: state.dropzoneVisible
+  displayedSamples: getDisplayedSamples(state),
+  orderBy: state.filters.orderBy
 });
 
 export default connect(mapStateToProps, {
   downloadSamples,
   toggleSampleSelect,
-  changeFocusedSample,
-  toggleAllSamplesSelect
+  toggleAllSamplesSelect,
+  addSamples,
+  deleteSamples,
+  reorderSamples,
+  toggleEditSampleModal
 })(SampleBrowserArea);

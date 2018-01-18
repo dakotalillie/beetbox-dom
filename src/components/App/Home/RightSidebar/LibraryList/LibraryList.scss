@@ -1,0 +1,25 @@
+@import '../../../../../styles/colors.scss';
+
+.right_sidebar_library_list {
+  .add_library_button .glyphicon {
+    margin-right: 5px;
+  }
+  .list-group {
+    margin-top: 10px;
+    margin-bottom: 0;
+    .list-group-item {
+      background-color: transparent;
+      border: none;
+      color: $darkestGrey;
+      padding: 2px 0;
+      margin: 5px 0;
+      &:focus {
+        outline: none;
+      }
+      .library_artwork {
+        margin-right: 5px;
+        width: 25px;
+      }
+    }
+  }
+}
