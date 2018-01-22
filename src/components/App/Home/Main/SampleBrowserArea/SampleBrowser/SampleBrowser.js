@@ -69,8 +69,10 @@ class SampleBrowser extends React.Component {
   };
   tableClassName = () => {
     let className = '';
-    if (this.props.sidebarOpen) {
+    if (this.props.sidebarOpen && !this.props.rightSidebarOpen) {
       className = 'pushed ';
+    } else if (!this.props.sidebarOpen && this.props.rightSidebarOpen) {
+      className = 'pushed_left ';
     }
     if (this.props.dropzoneVisible) {
       className += 'faded';

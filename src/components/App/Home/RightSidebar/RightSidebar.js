@@ -9,7 +9,6 @@ import {
   Grid,
   InputGroup,
   MenuItem,
-  Panel,
   Row
 } from 'react-bootstrap';
 import ReactStars from 'react-stars';
@@ -17,6 +16,8 @@ import './RightSidebar.css';
 import CircleOfFifths from './CircleOfFifths/CircleOfFifths';
 import LibraryList from './LibraryList/LibraryList';
 import FolderList from './FolderList/FolderList';
+import TagList from './TagList/TagList';
+import DropdownPanel from './DropdownPanel/DropdownPanel';
 
 class RightSidebar extends React.Component {
   state = {
@@ -106,6 +107,11 @@ class RightSidebar extends React.Component {
     } else if (hover && !value) {
       return;
     }
+  };
+  collapsePanel = key => {
+    const newState = { ...this.state };
+    newState[key] = { ...newState[key], collapsed: !newState[key].collapsed };
+    this.setState(newState);
   };
   render = () => {
     return (
@@ -222,6 +228,7 @@ class RightSidebar extends React.Component {
                     count={5}
                     size={18}
                     half={false}
+                    color2={'#c52545'}
                     value={this.state.rating.value}
                     onChange={newRating => {
                       this.setState(prevState => ({
@@ -239,126 +246,57 @@ class RightSidebar extends React.Component {
             </Row>
             <Row className="no_margin">
               <Col xs={12}>
-                <Panel id="collapsible-panel-example-2">
-                  <Panel.Heading>
-                    <Panel.Title>
-                      Key
-                      <Panel.Toggle componentClass="a">
-                        <Glyphicon
-                          glyph={
-                            this.state.key.collapsed
-                              ? 'triangle-right'
-                              : 'triangle-bottom'
-                          }
-                          onClick={() =>
-                            this.setState(prevState => ({
-                              ...prevState,
-                              key: {
-                                ...prevState.key,
-                                collapsed: !prevState.key.collapsed
-                              }
-                            }))
-                          }
-                        />
-                      </Panel.Toggle>
-                    </Panel.Title>
-                  </Panel.Heading>
-                  <Panel.Collapse>
-                    <Panel.Body>
-                      <CircleOfFifths />
-                    </Panel.Body>
-                  </Panel.Collapse>
-                </Panel>
+                <DropdownPanel
+                  title="Key"
+                  collapsed={this.state.key.collapsed}
+                  collapseAction={() => this.collapsePanel('key')}
+                >
+                  <CircleOfFifths />
+                </DropdownPanel>
               </Col>
             </Row>
             <Row className="no_margin">
               <Col xs={12}>
-                <Panel id="collapsible-panel-example-2">
-                  <Panel.Heading>
-                    <Panel.Title>
-                      Library
-                      <Panel.Toggle componentClass="a">
-                        <Glyphicon
-                          glyph={
-                            this.state.library.collapsed
-                              ? 'triangle-right'
-                              : 'triangle-bottom'
-                          }
-                          onClick={() =>
-                            this.setState(prevState => ({
-                              ...prevState,
-                              library: {
-                                ...prevState.library,
-                                collapsed: !prevState.library.collapsed
-                              }
-                            }))
-                          }
-                        />
-                      </Panel.Toggle>
-                    </Panel.Title>
-                  </Panel.Heading>
-                  <Panel.Collapse>
-                    <Panel.Body>
-                      <LibraryList />
-                    </Panel.Body>
-                  </Panel.Collapse>
-                </Panel>
+                <DropdownPanel
+                  title="Library"
+                  collapsed={this.state.library.collapsed}
+                  collapseAction={() => this.collapsePanel('library')}
+                  newItem={() => this.props.toggleNewItemModal('library')}
+                >
+                  <LibraryList
+                    libraries={this.props.libraries}
+                    deleteLibrary={this.props.deleteLibrary}
+                    toggleNewItemModal={this.props.toggleNewItemModal}
+                  />
+                </DropdownPanel>
               </Col>
             </Row>
             <Row className="no_margin">
               <Col xs={12}>
-                <Panel id="collapsible-panel-example-2">
-                  <Panel.Heading>
-                    <Panel.Title>
-                      Folders
-                      <Panel.Toggle componentClass="a">
-                        <Glyphicon
-                          glyph={
-                            this.state.folders.collapsed
-                              ? 'triangle-right'
-                              : 'triangle-bottom'
-                          }
-                          onClick={() =>
-                            this.setState(prevState => ({
-                              ...prevState,
-                              folders: {
-                                ...prevState.folders,
-                                collapsed: !prevState.folders.collapsed
-                              }
-                            }))
-                          }
-                        />
-                      </Panel.Toggle>
-                    </Panel.Title>
-                  </Panel.Heading>
-                  <Panel.Collapse>
-                    <Panel.Body>
-                      <FolderList />
-                    </Panel.Body>
-                  </Panel.Collapse>
-                </Panel>
+                <DropdownPanel
+                  title="Folders"
+                  collapsed={this.state.folders.collapsed}
+                  collapseAction={() => this.collapsePanel('folders')}
+                  newItem={() => this.props.toggleNewItemModal('folder')}
+                >
+                  <FolderList
+                    folders={this.props.folders}
+                    deleteFolder={this.props.deleteFolder}
+                    toggleNewItemModal={this.props.toggleNewItemModal}
+                  />
+                </DropdownPanel>
               </Col>
             </Row>
             <Row className="no_margin">
               <Col xs={12}>
-                <Panel id="collapsible-panel-example-2">
-                  <Panel.Heading>
-                    <Panel.Title>
-                      Tags
-                      <Panel.Toggle componentClass="a">
-                        <Glyphicon glyph="triangle-right" />
-                      </Panel.Toggle>
-                    </Panel.Title>
-                  </Panel.Heading>
-                  <Panel.Collapse>
-                    <Panel.Body>
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life
-                      accusamus terry richardson ad squid. Nihil anim keffiyeh
-                      helvetica, craft beer labore wes anderson cred nesciunt
-                      sapiente ea proident.
-                    </Panel.Body>
-                  </Panel.Collapse>
-                </Panel>
+                <DropdownPanel
+                  title="Tags"
+                  collapsed={this.state.tags.collapsed}
+                  collapseAction={() => this.collapsePanel('tags')}
+                  newItem={() => this.props.toggleNewItemModal('tag')}
+                >
+                  <TagList />
+                </DropdownPanel>
               </Col>
             </Row>
           </form>

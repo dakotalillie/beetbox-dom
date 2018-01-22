@@ -5,6 +5,7 @@ import SampleBrowser from './SampleBrowser/SampleBrowser';
 const SampleBrowserArea = ({
   currentUser,
   sidebarOpen,
+  rightSidebarOpen,
   downloadSamples,
   selectedSamples,
   toggleSampleSelect,
@@ -14,7 +15,7 @@ const SampleBrowserArea = ({
   displayedSamples,
   reorderSamples,
   orderBy,
-  toggleEditSampleModal
+  toggleRightSidebar
 }) => {
   return (
     <div className="sample_browser_area">
@@ -25,10 +26,11 @@ const SampleBrowserArea = ({
         toggleAllSamplesSelect={toggleAllSamplesSelect}
         deleteSamples={deleteSamples}
         displayedSamples={displayedSamples}
-        toggleEditSampleModal={toggleEditSampleModal}
+        toggleRightSidebar={toggleRightSidebar}
       />
       <SampleBrowser
         sidebarOpen={sidebarOpen}
+        rightSidebarOpen={rightSidebarOpen}
         toggleSampleSelect={toggleSampleSelect}
         addSamples={addSamples}
         selectedSamples={selectedSamples}

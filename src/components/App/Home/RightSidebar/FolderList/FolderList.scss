@@ -1,6 +1,9 @@
 @import '../../../../../styles/colors.scss';
 
+$pretty--color-primary: $mainRed;
+
 .folder_list {
+  margin-left: -3px;
   .tree-view {
     color: $darkestGrey;
     font-size: 1.5rem;
@@ -15,6 +18,9 @@
         label {
           font-weight: 400;
           margin-bottom: 0;
+          &::before {
+            border: 1px solid $darkGrey;
+          }
         }
       }
     }

@@ -7,7 +7,7 @@ import {
   addSamples,
   deleteSamples,
   reorderSamples,
-  toggleEditSampleModal
+  toggleRightSidebar
 } from '../actions';
 import { getDisplayedSamples } from '../selectors';
 
@@ -15,6 +15,7 @@ const mapStateToProps = state => ({
   currentUser: state.currentUser,
   sampleSearch: state.sampleSearch,
   sidebarOpen: state.sidebarOpen,
+  rightSidebarOpen: state.rightSidebarOpen,
   selectedSamples: [...state.selectedSamples].map(id => state.samples[id]),
   displayedSamples: getDisplayedSamples(state),
   orderBy: state.filters.orderBy
@@ -27,5 +28,5 @@ export default connect(mapStateToProps, {
   addSamples,
   deleteSamples,
   reorderSamples,
-  toggleEditSampleModal
+  toggleRightSidebar
 })(SampleBrowserArea);

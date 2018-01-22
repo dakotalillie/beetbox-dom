@@ -6,12 +6,24 @@ import Header from './Header/Header';
 import FilterArea from '../../../../containers/FilterArea';
 import SampleBrowserArea from '../../../../containers/SampleBrowserArea';
 
-const Main = ({ sidebarOpen, addSamples }) => {
+const Main = ({ sidebarOpen, rightSidebarOpen, addSamples }) => {
+  function contentClass() {
+    if (
+      (sidebarOpen && rightSidebarOpen) ||
+      (!sidebarOpen && !rightSidebarOpen)
+    ) {
+      return 'content';
+    } else if (sidebarOpen && !rightSidebarOpen) {
+      return 'content pushed';
+    } else if (!sidebarOpen && rightSidebarOpen) {
+      return 'content pushed_left';
+    }
+  }
   return (
     <div className="main">
       <HamburgerIcon />
       <Grid className="main_grid">
-        <div className={'content' + (sidebarOpen ? ' pushed' : '')}>
+        <div className={contentClass()}>
           <Row className="header_row">
             <Header addSamples={addSamples} />
           </Row>

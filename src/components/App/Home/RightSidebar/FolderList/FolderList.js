@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { Glyphicon } from 'react-bootstrap';
+import { ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
 import TreeView from 'react-treeview';
 import 'react-treeview/react-treeview.css';
 import './FolderList.css';
@@ -22,57 +24,56 @@ class FolderList extends React.Component {
     }
     this.setState({ cursor: node });
   };
+  mapFolders = () => {
+    return Object.keys(this.props.folders)
+      .sort((a, b) => {
+        const nameA = this.props.folders[a].name.toLowerCase();
+        const nameB = this.props.folders[b].name.toLowerCase();
+        if (nameA < nameB) return -1;
+        else if (nameA > nameB) return 1;
+        else return 0;
+      })
+      .map(key => {
+        const { id, name } = this.props.folders[key];
+        return (
+          <Fragment key={id}>
+            <ContextMenuTrigger id={`context_${id}`}>
+              <TreeView
+                nodeLabel={
+                  <div className="node_label pretty p-icon p-round p-smooth">
+                    <input type="checkbox" />
+                    <div className="state">
+                      <i className="icon glyphicon glyphicon-ok" />
+                      <label>{name}</label>
+                    </div>
+                  </div>
+                }
+                defaultCollapsed
+              />
+            </ContextMenuTrigger>
+            <ContextMenu id={`context_${id}`}>
+              <MenuItem
+                data={{}}
+                onClick={() => this.props.toggleNewItemModal('folder', id)}
+              >
+                <span>
+                  <Glyphicon glyph="pencil" />
+                  Edit
+                </span>
+              </MenuItem>
+              <MenuItem data={{}} onClick={() => this.props.deleteFolder(id)}>
+                <span>
+                  <Glyphicon glyph="trash" />
+                  Delete
+                </span>
+              </MenuItem>
+            </ContextMenu>
+          </Fragment>
+        );
+      });
+  };
   render = () => {
-    return (
-      <div className="folder_list">
-        <TreeView
-          nodeLabel={
-            <div className="node_label">
-              <input type="checkbox" />
-              <label>Folder Name</label>
-            </div>
-          }
-          defaultCollapsed
-        >
-          <TreeView
-            nodeLabel={
-              <div className="node_label">
-                <input type="checkbox" />
-                <label>Folder Name</label>
-              </div>
-            }
-            defaultCollapsed
-          />
-          <TreeView
-            nodeLabel={
-              <div className="node_label">
-                <input type="checkbox" />
-                <label>Folder Name</label>
-              </div>
-            }
-            defaultCollapsed
-          />
-        </TreeView>
-        <TreeView
-          nodeLabel={
-            <div className="node_label">
-              <input type="checkbox" />
-              <label>Folder Name</label>
-            </div>
-          }
-          defaultCollapsed
-        />
-        <TreeView
-          nodeLabel={
-            <div className="node_label">
-              <input type="checkbox" />
-              <label>Folder Name</label>
-            </div>
-          }
-          defaultCollapsed
-        />
-      </div>
-    );
+    return <div className="folder_list">{this.mapFolders()}</div>;
   };
 }
 

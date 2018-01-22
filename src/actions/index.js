@@ -1,5 +1,6 @@
 import {
   TOGGLE_SIDEBAR,
+  TOGGLE_RIGHT_SIDEBAR,
   REQUEST_CURRENT_USER,
   RECEIVE_CURRENT_USER,
   NO_TOKEN,
@@ -9,7 +10,13 @@ import {
   TOGGLE_ALL_SAMPLES_SELECT,
   RECEIVE_DELETED_SAMPLES,
   REORDER_SAMPLES,
-  TOGGLE_EDIT_SAMPLE_MODAL
+  TOGGLE_NEW_ITEM_MODAL,
+  RECEIVE_ADDED_LIBRARY,
+  RECEIVE_DELETED_LIBRARY,
+  RECEIVE_EDITED_LIBRARY,
+  RECEIVE_ADDED_FOLDER,
+  RECEIVE_EDITED_FOLDER,
+  RECEIVE_DELETED_FOLDER
 } from './actionTypes';
 import { normalize, schema } from 'normalizr';
 import { API_ROOT, headers, file_upload_headers } from '../constants';
@@ -18,6 +25,12 @@ import download from 'downloadjs';
 export const toggleSidebar = () => {
   return {
     type: TOGGLE_SIDEBAR
+  };
+};
+
+export const toggleRightSidebar = () => {
+  return {
+    type: TOGGLE_RIGHT_SIDEBAR
   };
 };
 
@@ -195,8 +208,139 @@ export const reorderSamples = (column, direction) => {
   };
 };
 
-export const toggleEditSampleModal = () => {
+export const toggleNewItemModal = (item = null, id = null) => {
   return {
-    type: TOGGLE_EDIT_SAMPLE_MODAL
+    type: TOGGLE_NEW_ITEM_MODAL,
+    payload: {
+      item,
+      id
+    }
+  };
+};
+
+export const addLibrary = formData => {
+  return dispatch => {
+    return fetch(`${API_ROOT}/libraries`, {
+      method: 'POST',
+      headers: file_upload_headers,
+      body: formData
+    })
+      .then(res => res.json())
+      .then(json => dispatch(receiveAddedLibrary(json)));
+  };
+};
+
+export const receiveAddedLibrary = library => {
+  return {
+    type: RECEIVE_ADDED_LIBRARY,
+    payload: {
+      library
+    }
+  };
+};
+
+export const receiveDeletedLibrary = json => {
+  return {
+    type: RECEIVE_DELETED_LIBRARY,
+    payload: {
+      id: json.id
+    }
+  };
+};
+
+export const deleteLibrary = libraryId => {
+  return dispatch => {
+    return fetch(`${API_ROOT}/libraries/${libraryId}`, {
+      method: 'DELETE',
+      headers: file_upload_headers
+    })
+      .then(res => res.json())
+      .then(json => dispatch(receiveDeletedLibrary(json)));
+  };
+};
+
+export const receiveEditedLibrary = library => {
+  return {
+    type: RECEIVE_EDITED_LIBRARY,
+    payload: {
+      library
+    }
+  };
+};
+
+export const editLibrary = (formData, libraryId) => {
+  debugger;
+  return dispatch => {
+    return fetch(`${API_ROOT}/libraries/${libraryId}`, {
+      method: 'PATCH',
+      headers: file_upload_headers,
+      body: formData
+    })
+      .then(res => res.json())
+      .then(json => dispatch(receiveEditedLibrary(json)));
+  };
+};
+
+export const addFolder = formData => {
+  return dispatch => {
+    return fetch(`${API_ROOT}/folders`, {
+      method: 'POST',
+      headers: file_upload_headers,
+      body: formData
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(json => dispatch(receiveAddedFolder(json)));
+  };
+};
+
+export const receiveAddedFolder = folder => {
+  return {
+    type: RECEIVE_ADDED_FOLDER,
+    payload: {
+      folder
+    }
+  };
+};
+
+export const editFolder = (formData, folderId) => {
+  return dispatch => {
+    return fetch(`${API_ROOT}/folders/${folderId}`, {
+      method: 'PATCH',
+      headers: file_upload_headers,
+      body: formData
+    })
+      .then(res => res.json())
+      .then(json => dispatch(receiveEditedFolder(json)));
+  };
+};
+
+export const receiveEditedFolder = folder => {
+  return {
+    type: RECEIVE_EDITED_FOLDER,
+    payload: {
+      folder
+    }
+  };
+};
+
+export const deleteFolder = folderId => {
+  return dispatch => {
+    return fetch(`${API_ROOT}/folders/${folderId}`, {
+      method: 'DELETE',
+      headers: file_upload_headers
+    })
+      .then(res => res.json())
+      .then(json => dispatch(receiveDeletedFolder(json)));
+  };
+};
+
+export const receiveDeletedFolder = json => {
+  return {
+    type: RECEIVE_DELETED_FOLDER,
+    payload: {
+      id: json.id
+    }
   };
 };

@@ -5,6 +5,7 @@
     margin-right: 5px;
   }
   .list-group {
+    cursor: pointer;
     margin-top: 10px;
     margin-bottom: 0;
     .list-group-item {
@@ -20,6 +21,29 @@
         margin-right: 5px;
         width: 25px;
       }
+      .pretty {
+        vertical-align: middle;
+        user-select: none;
+      }
     }
+    // .react-contextmenu--visible {
+    //   background-color: white;
+    //   padding: 5px;
+    //   width: 100px;
+    //   z-index: 1;
+    //   .react-contextmenu-item {
+    //     cursor: pointer;
+    //     padding: 4px 5px;
+    //     &:hover {
+    //       background-color: #eee;
+    //     }
+    //     &:active {
+    //       outline: none;
+    //     }
+    //     .glyphicon {
+    //       padding-right: 8px;
+    //     }
+    //   }
+    // }
   }
 }

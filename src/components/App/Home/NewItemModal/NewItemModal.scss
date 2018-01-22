@@ -1,0 +1,17 @@
+.new_item_modal {
+  color: black;
+  .container {
+    padding: 0;
+    width: 100%;
+    .hidden_file_upload {
+      display: none;
+    }
+    .image_container {
+      text-align: left;
+      width: 100%;
+      .image_preview {
+        width: 70px;
+      }
+    }
+  }
+}

@@ -13,3 +13,19 @@
     transition: left 0.3s ease-out;
   }
 }
+
+.right_sidebar-enter {
+  right: -375px;
+  &.right_sidebar-enter-active {
+    right: 0;
+    transition: right 0.3s ease-out;
+  }
+}
+
+.right_sidebar-leave {
+  right: 0;
+  &.right_sidebar-leave-active {
+    right: -375px;
+    transition: right 0.3s ease-out;
+  }
+}

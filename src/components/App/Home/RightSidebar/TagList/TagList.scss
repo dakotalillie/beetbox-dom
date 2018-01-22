@@ -1,0 +1,16 @@
+@import '../../../../../styles/colors.scss';
+
+.tag_list {
+  .container {
+    padding: 0;
+    width: 100%;
+    .state {
+      label {
+        .tag_count {
+          color: $mainRed;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}

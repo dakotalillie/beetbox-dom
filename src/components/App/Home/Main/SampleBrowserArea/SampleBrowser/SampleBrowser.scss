@@ -8,9 +8,13 @@
     border: none;
     margin-top: 18px;
     max-width: calc(100% + 187.5px);
-    transition: width 0.3s ease-out;
+    transition: all 0.3s ease-out;
     &.pushed {
       width: calc(100% + 187.5px);
+    }
+    &.pushed_left {
+      margin-left: 187.5px;
+      width: calc(100% - 375px);
     }
     &.faded {
       opacity: 0.2;

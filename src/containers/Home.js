@@ -1,15 +1,14 @@
 import { connect } from 'react-redux';
 import Home from '../components/App/Home/Home';
-import { receiveAddedSample, toggleEditSampleModal } from '../actions';
+import { receiveAddedSample } from '../actions';
 
 const mapStateToProps = state => ({
   sidebarOpen: state.sidebarOpen,
+  rightSidebarOpen: state.rightSidebarOpen,
   currentUser: state.currentUser,
-  editSampleModalOpen: state.editSampleModalOpen,
-  selectedSamples: state.selectedSamples.map(id => state.samples[id])
+  newItemModal: state.newItemModal
 });
 
 export default connect(mapStateToProps, {
-  receiveAddedSample,
-  toggleEditSampleModal
+  receiveAddedSample
 })(Home);

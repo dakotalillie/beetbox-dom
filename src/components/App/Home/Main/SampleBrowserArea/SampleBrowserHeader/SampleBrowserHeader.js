@@ -9,7 +9,7 @@ const SampleBrowserHeader = ({
   toggleAllSamplesSelect,
   displayedSamples,
   deleteSamples,
-  toggleEditSampleModal
+  toggleRightSidebar
 }) => {
   return (
     <div className="sample_browser_header">
@@ -46,9 +46,7 @@ const SampleBrowserHeader = ({
             <div className="right_buttons">
               <Button
                 className="select_all_button"
-                onClick={() =>
-                  selectedSamples.length ? toggleEditSampleModal() : null
-                }
+                onClick={toggleRightSidebar}
               >
                 Edit
               </Button>

@@ -1,0 +1,35 @@
+@import '../../../../../styles/colors.scss';
+
+.dropdown_panel {
+  .panel {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    color: $darkestGrey;
+    .panel-heading {
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid $darkGrey;
+      color: $darkestGrey;
+      padding: 10px 0px;
+      .glyphicon-triangle-right,
+      .glyphicon-triangle-bottom {
+        cursor: pointer;
+        font-size: 1.3rem;
+        float: right;
+        margin-top: 5px;
+      }
+      .glyphicon-plus {
+        cursor: pointer;
+        font-size: 1.5rem;
+        float: right;
+        margin-top: 4px;
+        margin-right: 10px;
+        color: $darkestGrey;
+      }
+    }
+  }
+  .no_margin {
+    margin-bottom: 0;
+  }
+}
