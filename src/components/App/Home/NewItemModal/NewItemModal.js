@@ -3,6 +3,7 @@ import { Modal } from 'react-bootstrap';
 import LibraryForm from './LibraryForm/LibraryForm';
 import FolderForm from './FolderForm/FolderForm';
 import './NewItemModal.css';
+import TagForm from './TagForm/TagForm';
 
 class NewItemModal extends React.Component {
   whichForm = () => {
@@ -33,6 +34,20 @@ class NewItemModal extends React.Component {
             folders={this.props.folders}
             addFolder={this.props.addFolder}
             editFolder={this.props.editFolder}
+          />
+        );
+      case 'tag':
+        const tag = this.props.tags[this.props.newItemModal.id]
+          ? this.props.tags[this.props.newItemModal.id]
+          : {};
+        return (
+          <TagForm
+            id={tag.id}
+            name={tag.name}
+            close={this.props.toggleNewItemModal}
+            tags={this.props.tags}
+            addTag={this.props.addTag}
+            editTag={this.props.editTag}
           />
         );
       default:

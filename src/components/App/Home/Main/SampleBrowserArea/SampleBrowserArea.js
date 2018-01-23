@@ -15,7 +15,8 @@ const SampleBrowserArea = ({
   displayedSamples,
   reorderSamples,
   orderBy,
-  toggleRightSidebar
+  toggleRightSidebar,
+  libraries
 }) => {
   return (
     <div className="sample_browser_area">
@@ -37,6 +38,7 @@ const SampleBrowserArea = ({
         displayedSamples={displayedSamples}
         reorderSamples={reorderSamples}
         orderBy={orderBy}
+        libraries={libraries}
       />
     </div>
   );

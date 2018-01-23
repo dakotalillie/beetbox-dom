@@ -1,4 +1,4 @@
-import { RECEIVE_CURRENT_USER } from '../actions/actionTypes';
+import { RECEIVE_CURRENT_USER } from '../constants/actionTypes';
 
 const isLoggedIn = (state = false, action) => {
   switch (action.type) {

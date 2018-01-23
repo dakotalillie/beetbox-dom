@@ -2,25 +2,105 @@
 
 .sidebar_browser {
   margin-top: 40px;
-  .main_icon {
-    color: $mainRed;
-    font-size: 2.5rem;
-  }
-  .title_button {
-    background-color: transparent;
-    border: none;
-    box-shadow: none;
-    color: $darkGrey;
-    font-size: 2rem;
-    margin-left: 15px;
-    padding: 0;
-    vertical-align: text-bottom;
-    &:active {
-      background-color: inherit;
+  .container {
+    width: 100%;
+    .main_icon {
+      color: $mainRed;
+      font-size: 2.5rem;
     }
-    .glyphicon {
-      font-size: 1.5rem;
-      margin-left: 6px;
+    .title_button {
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+      color: $darkGrey;
+      font-size: 2rem;
+      margin-left: 15px;
+      margin-right: 5px;
+      padding: 0;
+      vertical-align: text-bottom;
+      &:active {
+        background-color: inherit;
+      }
+      .glyphicon {
+        font-size: 1.5rem;
+        margin-left: 6px;
+      }
+    }
+    .panel {
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+      margin-bottom: 0;
+      width: 100%;
+      .panel-heading {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        .glyphicon-triangle-right,
+        .glyphicon-triangle-bottom {
+          color: $darkGrey;
+          cursor: pointer;
+          font-size: 1.3rem;
+          vertical-align: text-top;
+          // float: right;
+          // margin-top: 5px;
+        }
+      }
+      .panel-body {
+        padding-top: 0;
+        padding-left: 30px;
+        padding-bottom: 0;
+        &#folders_panel_body {
+          padding-top: 10px;
+          margin-left: -3px;
+        }
+        .list-group {
+          cursor: pointer;
+          margin-top: 10px;
+          margin-bottom: 0;
+          .list-group-item {
+            background-color: transparent;
+            border: none;
+            color: $darkestGrey;
+            padding: 2px 0;
+            margin: 5px 0;
+            &:focus {
+              outline: none;
+            }
+            .library_artwork {
+              margin-right: 5px;
+              user-select: none;
+              width: 25px;
+            }
+            .pretty {
+              vertical-align: middle;
+              user-select: none;
+            }
+          }
+        }
+        .tree-view {
+          color: $darkestGrey;
+          font-size: 1.5rem;
+          .tree-view_item {
+            margin-bottom: 5px;
+            .node_label {
+              display: inline-block;
+              input {
+                margin-right: 5px;
+                vertical-align: text-top;
+              }
+              label {
+                font-weight: 400;
+                margin-bottom: 0;
+                user-select: none;
+                &::before {
+                  border: 1px solid $darkGrey;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

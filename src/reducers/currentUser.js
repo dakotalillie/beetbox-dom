@@ -2,7 +2,7 @@ import {
   REQUEST_CURRENT_USER,
   RECEIVE_CURRENT_USER,
   NO_TOKEN
-} from '../actions/actionTypes';
+} from '../constants/actionTypes';
 
 const currentUser = (state = { loading: true }, action) => {
   switch (action.type) {

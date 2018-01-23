@@ -6,7 +6,12 @@ import Header from './Header/Header';
 import FilterArea from '../../../../containers/FilterArea';
 import SampleBrowserArea from '../../../../containers/SampleBrowserArea';
 
-const Main = ({ sidebarOpen, rightSidebarOpen, addSamples }) => {
+const Main = ({
+  sidebarOpen,
+  rightSidebarOpen,
+  displayedCategory,
+  addSamples
+}) => {
   function contentClass() {
     if (
       (sidebarOpen && rightSidebarOpen) ||
@@ -25,7 +30,10 @@ const Main = ({ sidebarOpen, rightSidebarOpen, addSamples }) => {
       <Grid className="main_grid">
         <div className={contentClass()}>
           <Row className="header_row">
-            <Header addSamples={addSamples} />
+            <Header
+              addSamples={addSamples}
+              displayedCategory={displayedCategory}
+            />
           </Row>
           <Row className="filter_row">
             <FilterArea />

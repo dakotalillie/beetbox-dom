@@ -18,7 +18,8 @@ const mapStateToProps = state => ({
   rightSidebarOpen: state.rightSidebarOpen,
   selectedSamples: [...state.selectedSamples].map(id => state.samples[id]),
   displayedSamples: getDisplayedSamples(state),
-  orderBy: state.filters.orderBy
+  orderBy: state.filters.orderBy,
+  libraries: state.libraries
 });
 
 export default connect(mapStateToProps, {

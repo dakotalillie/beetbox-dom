@@ -1,78 +1,66 @@
-import React from 'react';
-import { Col, Grid, Row } from 'react-bootstrap';
+import React, { Fragment } from 'react';
+import { Glyphicon, Col, Grid } from 'react-bootstrap';
+import { ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
 import './TagList.css';
 
-const TagList = () => {
+const TagList = ({
+  tags,
+  selectedTags,
+  deleteTag,
+  toggleNewItemModal,
+  handleCheckboxSelect
+}) => {
+  function mapTags() {
+    return Object.keys(tags)
+      .sort((a, b) => {
+        const nameA = tags[a].name.toLowerCase();
+        const nameB = tags[b].name.toLowerCase();
+        if (nameA < nameB) return -1;
+        else if (nameA > nameB) return 1;
+        else return 0;
+      })
+      .map(key => {
+        const { id, name, count } = tags[key];
+        return (
+          <Fragment key={id}>
+            <ContextMenuTrigger id={`context_${id}`}>
+              <Col xs={6}>
+                <div className="node_label pretty p-default p-curve p-thick p-smooth">
+                  <input
+                    type="checkbox"
+                    onChange={() => handleCheckboxSelect('tags', id)}
+                    checked={selectedTags.includes(id)}
+                  />
+                  <div className="state">
+                    <label>
+                      {name}
+                      <span className="tag_count">{count}</span>
+                    </label>
+                  </div>
+                </div>
+              </Col>
+            </ContextMenuTrigger>
+            <ContextMenu id={`context_${id}`}>
+              <MenuItem data={{}} onClick={() => toggleNewItemModal('tag', id)}>
+                <span>
+                  <Glyphicon glyph="pencil" />
+                  Edit
+                </span>
+              </MenuItem>
+              <MenuItem data={{}} onClick={() => deleteTag(id)}>
+                <span>
+                  <Glyphicon glyph="trash" />
+                  Delete
+                </span>
+              </MenuItem>
+            </ContextMenu>
+          </Fragment>
+        );
+      });
+  }
   return (
     <div className="tag_list">
-      <Grid>
-        <Row>
-          <Col xs={6}>
-            <div className="node_label pretty p-default p-curve p-thick p-smooth">
-              <input type="checkbox" />
-              <div className="state">
-                <label>
-                  Acoustic<span className="tag_count">17</span>
-                </label>
-              </div>
-            </div>
-          </Col>
-          <Col xs={6}>
-            <div className="node_label pretty p-default p-curve p-thick p-smooth">
-              <input type="checkbox" />
-              <div className="state">
-                <label>
-                  Ambient<span className="tag_count">5</span>
-                </label>
-              </div>
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={6}>
-            <div className="node_label pretty p-default p-curve p-thick p-smooth">
-              <input type="checkbox" />
-              <div className="state">
-                <label>
-                  Dark<span className="tag_count">10</span>
-                </label>
-              </div>
-            </div>
-          </Col>
-          <Col xs={6}>
-            <div className="node_label pretty p-default p-curve p-thick p-smooth">
-              <input type="checkbox" />
-              <div className="state">
-                <label>
-                  Distorted<span className="tag_count">23</span>
-                </label>
-              </div>
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={6}>
-            <div className="node_label pretty p-default p-curve p-thick p-smooth">
-              <input type="checkbox" />
-              <div className="state">
-                <label>
-                  Electronic<span className="tag_count">8</span>
-                </label>
-              </div>
-            </div>
-          </Col>
-          <Col xs={6}>
-            <div className="node_label pretty p-default p-curve p-thick p-smooth">
-              <input type="checkbox" />
-              <div className="state">
-                <label>
-                  Rare<span className="tag_count">2</span>
-                </label>
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </Grid>
+      <Grid>{mapTags()}</Grid>
     </div>
   );
 };

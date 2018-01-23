@@ -5,13 +5,16 @@ import {
   addLibrary,
   editLibrary,
   addFolder,
-  editFolder
+  editFolder,
+  addTag,
+  editTag
 } from '../actions';
 
 const mapStateToProps = state => ({
   newItemModal: state.newItemModal,
   libraries: state.libraries,
-  folders: state.folders
+  folders: state.folders,
+  tags: state.tags
 });
 
 export default connect(mapStateToProps, {
@@ -19,5 +22,7 @@ export default connect(mapStateToProps, {
   addLibrary,
   editLibrary,
   addFolder,
-  editFolder
+  editFolder,
+  addTag,
+  editTag
 })(NewItemModal);

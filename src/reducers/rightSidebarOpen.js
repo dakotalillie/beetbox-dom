@@ -1,4 +1,4 @@
-import { TOGGLE_RIGHT_SIDEBAR } from '../actions/actionTypes';
+import { TOGGLE_RIGHT_SIDEBAR } from '../constants/actionTypes';
 
 const rightSidebarOpen = (state = false, action) => {
   switch (action.type) {

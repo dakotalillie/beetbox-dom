@@ -5,12 +5,13 @@
   margin-right: 8px;
   .btn.tag_button {
     border-radius: 15px;
-    border-color: $darkGrey;
+    border: none;
+    // border-color: $darkGrey;
     color: $darkGrey;
     font-size: 1.4rem;
     &:hover {
       background-color: white;
-      border-color: $darkGrey;
+      border: none;
     }
     &:focus {
       background-color: white;
@@ -22,6 +23,20 @@
     .tag_count {
       color: $mainRed;
       display: inline-block;
+    }
+    &.selected {
+      background-color: $mainRed;
+      color: white;
+      &:hover {
+        background-color: $mainRed;
+        border-color: $darkGrey;
+      }
+      &:focus {
+        background-color: $mainRed;
+      }
+      .tag_count {
+        color: $lightGrey;
+      }
     }
   }
 }

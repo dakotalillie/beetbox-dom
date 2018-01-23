@@ -41,7 +41,13 @@ class FolderList extends React.Component {
               <TreeView
                 nodeLabel={
                   <div className="node_label pretty p-icon p-round p-smooth">
-                    <input type="checkbox" />
+                    <input
+                      type="checkbox"
+                      onChange={() =>
+                        this.props.handleCheckboxSelect('folders', id)
+                      }
+                      checked={this.props.selectedFolders.includes(id)}
+                    />
                     <div className="state">
                       <i className="icon glyphicon glyphicon-ok" />
                       <label>{name}</label>

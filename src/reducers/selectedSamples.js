@@ -2,7 +2,7 @@ import {
   TOGGLE_SAMPLE_SELECT,
   TOGGLE_ALL_SAMPLES_SELECT,
   RECEIVE_DELETED_SAMPLES
-} from '../actions/actionTypes';
+} from '../constants/actionTypes';
 
 const selectedSamples = (state = [], action) => {
   let newState;

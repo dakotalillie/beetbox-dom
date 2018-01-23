@@ -91,6 +91,7 @@ class SampleBrowser extends React.Component {
           selected={this.props.selectedSamples.find(
             sample => sample.id === this.props.displayedSamples[key].id
           )}
+          libraries={this.props.libraries}
         />
       );
     });

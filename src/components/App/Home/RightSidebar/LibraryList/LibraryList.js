@@ -4,7 +4,13 @@ import { ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
 import './LibraryList.css';
 import missingAlbumArt from '../../../../../assets/img/missing_albumart.jpg';
 
-const LibraryList = ({ libraries, deleteLibrary, toggleNewItemModal }) => {
+const LibraryList = ({
+  libraries,
+  selectedLibrary,
+  deleteLibrary,
+  toggleNewItemModal,
+  handleLibrarySelect
+}) => {
   function mapLibraries() {
     return Object.keys(libraries)
       .sort((a, b) => {
@@ -25,7 +31,12 @@ const LibraryList = ({ libraries, deleteLibrary, toggleNewItemModal }) => {
                   className="library_artwork"
                 />
                 <div className="pretty p-default p-curve p-thick">
-                  <input type="radio" name="library" />
+                  <input
+                    type="radio"
+                    name="library"
+                    onChange={() => handleLibrarySelect(id)}
+                    checked={id === selectedLibrary}
+                  />
                   <div className="state">
                     <i className="icon mdi mdi-check" />
                     <label>{name}</label>

@@ -3,7 +3,7 @@ import {
   RECEIVE_ADDED_LIBRARY,
   RECEIVE_DELETED_LIBRARY,
   RECEIVE_EDITED_LIBRARY
-} from '../actions/actionTypes';
+} from '../constants/actionTypes';
 
 const libraries = (state = {}, action) => {
   let newState = { ...state };

@@ -37,6 +37,7 @@ class SampleRow extends React.Component {
   };
   render = () => {
     const sample = this.props.sample;
+    const artworkUrl = this.props.libraries[sample.library_id].artwork_url;
     return (
       <tr
         className={
@@ -57,7 +58,7 @@ class SampleRow extends React.Component {
           onMouseEnter={() => this.setState({ hovered: true })}
           onMouseLeave={() => this.setState({ hovered: false })}
         >
-          <img src={missingAlbumArt} alt="cover" />
+          <img src={artworkUrl || missingAlbumArt} alt="cover" />
           {this.state.hovered || this.state.playing ? (
             <Button className="play_button">
               <Glyphicon glyph={this.state.playing ? 'stop' : 'play'} />
@@ -75,12 +76,12 @@ class SampleRow extends React.Component {
         <td>{sample.sample_type}</td>
         <td>{formatLength(sample.length)}</td>
         <td>
-          <Glyphicon glyph="heart-empty" />
+          <Glyphicon glyph={sample.favorite ? 'heart' : 'heart-empty'} />
         </td>
         <td>{sample.tempo ? sample.tempo : '--'}</td>
         <td>{sample.key ? sample.key : '--'}</td>
         <td>
-          <ReactStars count={5} size={15} half={false} />
+          <ReactStars count={5} size={15} half={false} value={sample.rating} />
         </td>
       </tr>
     );

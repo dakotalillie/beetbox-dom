@@ -9,14 +9,14 @@ import {
 } from 'react-bootstrap';
 import './Header.css';
 
-const Header = ({ addSamples }) => {
+const Header = ({ displayedCategory, addSamples }) => {
   let input;
   return (
     <div className="header">
       <Grid>
         <Row className="no_margin">
           <Col sm={6}>
-            <h1 className="header_title">All Samples</h1>
+            <h1 className="header_title">{displayedCategory}</h1>
             <Button className="toggle_filter_area_button">
               <Glyphicon
                 glyph="triangle-bottom"

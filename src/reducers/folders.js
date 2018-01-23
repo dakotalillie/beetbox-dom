@@ -3,7 +3,7 @@ import {
   RECEIVE_ADDED_FOLDER,
   RECEIVE_EDITED_FOLDER,
   RECEIVE_DELETED_FOLDER
-} from '../actions/actionTypes';
+} from '../constants/actionTypes';
 
 const folders = (state = {}, action) => {
   const newState = { ...state };

@@ -126,3 +126,13 @@ $color2: #b4ec51;
     }
   }
 }
+
+.centered_text_container {
+  height: 100%;
+  h4 {
+    position: relative;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

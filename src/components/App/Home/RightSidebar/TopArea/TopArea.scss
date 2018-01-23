@@ -1,0 +1,15 @@
+.top_area {
+  .Select > .Select-control {
+    height: 46px;
+    border-color: transparent;
+    box-shadow: none;
+    border-radius: 3px;
+    .Select-value {
+      padding-top: 5px;
+    }
+  }
+  .Select.is-focused:not(.is-open) > .Select-control {
+    border-color: transparent;
+    box-shadow: none;
+  }
+}

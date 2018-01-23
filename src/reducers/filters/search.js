@@ -1,4 +1,4 @@
-import { SET_SAMPLE_SEARCH } from '../../actions/actionTypes';
+import { SET_SAMPLE_SEARCH } from '../../constants/actionTypes';
 
 const search = (state = '', action) => {
   switch (action.type) {

@@ -5,7 +5,13 @@ import SearchBar from './SearchBar/SearchBar';
 import FilterButtons from './FilterButtons/FilterButtons';
 import TagsArea from './TagsArea/TagsArea';
 
-const FilterArea = ({ tags, setSampleSearch }) => {
+const FilterArea = ({
+  tags,
+  filters,
+  displayedSamples,
+  setSampleSearch,
+  changeTags
+}) => {
   return (
     <div className="filter_area">
       <Grid>
@@ -16,7 +22,12 @@ const FilterArea = ({ tags, setSampleSearch }) => {
           <FilterButtons />
         </Row>
         <Row>
-          <TagsArea tags={tags} />
+          <TagsArea
+            tags={tags}
+            filters={filters}
+            displayedSamples={displayedSamples}
+            changeTags={changeTags}
+          />
         </Row>
       </Grid>
     </div>

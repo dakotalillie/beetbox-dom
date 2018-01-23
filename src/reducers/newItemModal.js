@@ -1,4 +1,4 @@
-import { TOGGLE_NEW_ITEM_MODAL } from '../actions/actionTypes';
+import { TOGGLE_NEW_ITEM_MODAL } from '../constants/actionTypes';
 
 const newItemModal = (
   state = { open: false, item: null, id: null },

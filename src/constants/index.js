@@ -6,9 +6,6 @@ export const headers = {
   Accept: 'application/json',
   Authorization: token
 };
-export const file_upload_headers = {
-  // 'Content-Type': 'multipart/form-data',
-  // 'Accept-Encoding': 'binary',
-  // Accept: 'multipart/form-data',
+export const form_data_headers = {
   Authorization: token
 };

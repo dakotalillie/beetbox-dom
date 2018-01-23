@@ -19,6 +19,9 @@
         &:hover {
           fill: rgba(0, 0, 0, 0.05);
         }
+        &.active {
+          fill: rgba(197, 37, 69, 0.4);
+        }
       }
     }
   }

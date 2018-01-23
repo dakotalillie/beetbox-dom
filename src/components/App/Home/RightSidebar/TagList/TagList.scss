@@ -2,13 +2,17 @@
 
 .tag_list {
   .container {
+    margin-top: 10px;
     padding: 0;
     width: 100%;
-    .state {
-      label {
-        .tag_count {
-          color: $mainRed;
-          margin-left: 5px;
+    .node_label {
+      margin-bottom: 10px;
+      .state {
+        label {
+          .tag_count {
+            color: $mainRed;
+            margin-left: 5px;
+          }
         }
       }
     }
