@@ -1,6 +1,6 @@
 @import '../../../../../../../../styles/colors.scss';
 
-.modal.instrument_modal {
+.modal.rating_modal {
   top: 279px;
   right: initial;
   .modal-dialog {
@@ -9,12 +9,11 @@
       background-color: $lightGrey;
       color: $darkestGrey;
       padding: 15px;
-      width: 375px;
-      .container {
-        padding: 0;
-        width: 100%;
-        div.col-xs-6 {
-          margin-bottom: 10px;
+      width: 190px;
+      .btn {
+        &.active {
+          background-color: $mainRed;
+          border-color: $secondaryRed;
         }
       }
     }

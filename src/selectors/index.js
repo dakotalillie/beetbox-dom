@@ -52,6 +52,26 @@ export const getDisplayedSamples = createSelector(
         filters.instruments.includes(sample.instrument)
       );
     }
+    // tempo
+    newSamples = newSamples.filter(
+      sample =>
+        sample.tempo > filters.tempo.low && sample.tempo < filters.tempo.high
+    );
+    if (filters.key.length) {
+      newSamples = newSamples.filter(sample =>
+        filters.key.includes(sample.key)
+      );
+    }
+    if (filters.genre.length) {
+      newSamples = newSamples.filter(sample =>
+        filters.genre.includes(sample.genre)
+      );
+    }
+    if (filters.rating.length) {
+      newSamples = newSamples.filter(sample =>
+        filters.rating.includes(sample.rating)
+      );
+    }
     switch (filters.orderBy.column) {
       case 'name':
         newSamples = newSamples.sort((a, b) => {

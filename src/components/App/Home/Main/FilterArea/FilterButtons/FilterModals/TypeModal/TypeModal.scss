@@ -3,29 +3,32 @@
 .modal.type_modal {
   top: 279px;
   right: initial;
-  .modal-content {
-    background-color: $lightGrey;
-    color: $darkestGrey;
-    padding: 15px;
-    width: 375px;
-    .btn {
-      width: 47%;
-      &:focus {
-        outline: none;
-      }
-      &.right {
-        float: right;
+  .modal-dialog {
+    width: fit-content;
+    .modal-content {
+      background-color: $lightGrey;
+      color: $darkestGrey;
+      padding: 15px;
+      width: 375px;
+      .btn {
+        width: 47%;
+        &:focus {
+          outline: none;
+        }
+        &.right {
+          float: right;
+          &.active {
+            background-color: $mainRed;
+            color: white;
+          }
+        }
         &.active {
           background-color: $mainRed;
           color: white;
         }
-      }
-      &.active {
-        background-color: $mainRed;
-        color: white;
-      }
-      .glyphicon {
-        padding-right: 10px;
+        .glyphicon {
+          padding-right: 10px;
+        }
       }
     }
   }

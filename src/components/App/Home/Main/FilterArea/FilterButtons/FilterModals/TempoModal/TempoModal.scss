@@ -1,0 +1,38 @@
+@import '../../../../../../../../styles/colors.scss';
+
+.modal.tempo_modal {
+  top: 279px;
+  right: initial;
+  .modal-dialog {
+    width: fit-content;
+    .modal-content {
+      background-color: $lightGrey;
+      color: $darkestGrey;
+      padding: 15px;
+      width: 375px;
+      .rc-slider-track-1 {
+        background-color: $mainRed;
+      }
+      .rc-slider-handle {
+        border-color: $darkestGrey;
+      }
+      .tempo_label {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        margin-top: 10px;
+        padding: 10px 20px;
+        width: 100%;
+        .label_display {
+          display: inline-block;
+          text-align: center;
+          &.right {
+            float: right;
+          }
+          p {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}

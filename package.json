@@ -16,6 +16,7 @@
     "npm-run-all": "^4.1.2",
     "pretty-checkbox": "^3.0.3",
     "proptypes": "^1.1.0",
+    "rc-slider": "^8.6.0",
     "react": "^16.2.0",
     "react-actioncable-provider": "^1.0.2",
     "react-bootstrap": "^0.32.0",

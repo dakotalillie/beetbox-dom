@@ -5,8 +5,10 @@
   .main_search_input {
     background-color: inherit;
     border-radius: 0;
-    padding: 30px;
+    box-sizing: content-box;
+    padding: 10px 30px;
     color: white;
+    width: calc(100% - 60px);
     &:focus {
       border-color: inherit !important;
       box-shadow: none !important;
@@ -20,7 +22,7 @@
     padding: 0;
     position: absolute;
     right: 20px;
-    top: 18px;
+    top: 22px;
     &:active {
       background-color: inherit;
     }

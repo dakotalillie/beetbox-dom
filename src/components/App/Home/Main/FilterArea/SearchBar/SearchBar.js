@@ -4,19 +4,19 @@ import './SearchBar.css';
 
 class SearchBar extends React.Component {
   state = {
-    value: ''
+    value: this.props.search
+  };
+
+  componentWillReceiveProps = nextProps => {
+    this.setState({ value: nextProps.search });
   };
 
   handleChange = e => {
-    this.setState({ value: e.target.value }, () =>
-      this.props.setSampleSearch(this.state.value)
-    );
+    this.props.setSampleSearch(e.target.value);
   };
 
   handleClick = e => {
-    this.setState({ value: '' }, () =>
-      this.props.setSampleSearch(this.state.value)
-    );
+    this.props.setSampleSearch('');
   };
 
   render = () => {

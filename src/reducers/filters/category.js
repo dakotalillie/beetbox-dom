@@ -1,9 +1,13 @@
-import { CHANGE_CATEGORY } from '../../constants/actionTypes';
+import { CHANGE_CATEGORY, RESET_FILTERS } from '../../constants/actionTypes';
 
-const category = (state = { type: 'all', details: [] }, action) => {
+const defaultState = { type: 'all', details: [] };
+
+const category = (state = defaultState, action) => {
   switch (action.type) {
     case CHANGE_CATEGORY:
       return action.payload;
+    case RESET_FILTERS:
+      return defaultState;
     default:
       return state;
   }

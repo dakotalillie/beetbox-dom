@@ -1,4 +1,4 @@
-import { CHANGE_INSTRUMENT } from '../../constants/actionTypes';
+import { CHANGE_INSTRUMENT, RESET_FILTERS } from '../../constants/actionTypes';
 
 const instruments = (state = [], action) => {
   switch (action.type) {
@@ -10,6 +10,8 @@ const instruments = (state = [], action) => {
       } else {
         return [...state, action.payload.instrument];
       }
+    case RESET_FILTERS:
+      return [];
     default:
       return state;
   }

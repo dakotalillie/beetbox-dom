@@ -4,7 +4,11 @@ import {
   setSampleSearch,
   changeTags,
   changeSampleType,
-  changeInstrument
+  changeInstrument,
+  changeTempo,
+  changeKey,
+  changeGenre,
+  changeRating
 } from '../actions';
 import { getDisplayedSamples } from '../selectors';
 
@@ -19,5 +23,9 @@ export default connect(mapStateToProps, {
   setSampleSearch,
   changeTags,
   changeSampleType,
-  changeInstrument
+  changeInstrument,
+  changeTempo,
+  changeKey,
+  changeGenre,
+  changeRating
 })(FilterArea);

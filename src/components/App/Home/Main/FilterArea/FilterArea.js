@@ -13,13 +13,20 @@ const FilterArea = ({
   setSampleSearch,
   changeTags,
   changeSampleType,
-  changeInstrument
+  changeInstrument,
+  changeTempo,
+  changeKey,
+  changeGenre,
+  changeRating
 }) => {
   return (
     <div className="filter_area">
       <Grid>
         <Row className="first_row">
-          <SearchBar setSampleSearch={setSampleSearch} />
+          <SearchBar
+            setSampleSearch={setSampleSearch}
+            search={filters.search}
+          />
         </Row>
         <Row>
           <FilterButtons
@@ -28,6 +35,10 @@ const FilterArea = ({
             changeSampleType={changeSampleType}
             displayedSamples={displayedSamples}
             changeInstrument={changeInstrument}
+            changeTempo={changeTempo}
+            changeKey={changeKey}
+            changeGenre={changeGenre}
+            changeRating={changeRating}
           />
         </Row>
         <Row>

@@ -9,7 +9,12 @@ import {
   CHANGE_CATEGORY,
   CHANGE_TAGS,
   CHANGE_SAMPLE_TYPE,
-  CHANGE_INSTRUMENT
+  CHANGE_INSTRUMENT,
+  CHANGE_TEMPO,
+  CHANGE_KEY,
+  CHANGE_GENRE,
+  CHANGE_RATING,
+  RESET_FILTERS
 } from '../constants/actionTypes';
 
 export const toggleSidebar = () => {
@@ -105,5 +110,48 @@ export const changeInstrument = instrument => {
     payload: {
       instrument
     }
+  };
+};
+
+export const changeTempo = rangeArray => {
+  return {
+    type: CHANGE_TEMPO,
+    payload: {
+      low: rangeArray[0],
+      high: rangeArray[1]
+    }
+  };
+};
+
+export const changeKey = key => {
+  return {
+    type: CHANGE_KEY,
+    payload: {
+      key
+    }
+  };
+};
+
+export const changeGenre = genre => {
+  return {
+    type: CHANGE_GENRE,
+    payload: {
+      genre
+    }
+  };
+};
+
+export const changeRating = rating => {
+  return {
+    type: CHANGE_RATING,
+    payload: {
+      rating
+    }
+  };
+};
+
+export const resetFilters = () => {
+  return {
+    type: RESET_FILTERS
   };
 };

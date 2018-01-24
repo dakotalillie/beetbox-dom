@@ -9,7 +9,12 @@ export {
   changeCategory,
   changeTags,
   changeSampleType,
-  changeInstrument
+  changeInstrument,
+  changeTempo,
+  changeKey,
+  changeGenre,
+  changeRating,
+  resetFilters
 } from './UI';
 
 export { login, fetchCurrentUser, noToken } from './auth';

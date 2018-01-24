@@ -10,7 +10,8 @@ const Main = ({
   sidebarOpen,
   rightSidebarOpen,
   displayedCategory,
-  addSamples
+  addSamples,
+  resetFilters
 }) => {
   function contentClass() {
     if (
@@ -33,6 +34,7 @@ const Main = ({
             <Header
               addSamples={addSamples}
               displayedCategory={displayedCategory}
+              resetFilters={resetFilters}
             />
           </Row>
           <Row className="filter_row">

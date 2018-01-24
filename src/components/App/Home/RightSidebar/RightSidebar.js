@@ -190,8 +190,42 @@ class RightSidebar extends React.Component {
       }
     }));
   };
-  handleClick = (e, params) => {
-    let keyVal;
+  handleKeyClick = (keyNum, mode) => {
+    const majorKeys = [
+      'C',
+      'G',
+      'D',
+      'A',
+      'E',
+      'B',
+      'G♭',
+      'D♭',
+      'A♭',
+      'E♭',
+      'B♭',
+      'F'
+    ];
+    const minorKeys = [
+      'a',
+      'e',
+      'b',
+      'f♯',
+      'c♯',
+      'g♯',
+      'e♭',
+      'b♭',
+      'f',
+      'c',
+      'g',
+      'd'
+    ];
+    if (mode === 'major') {
+      this.changeKey(majorKeys[keyNum - 1]);
+    } else {
+      this.changeKey(minorKeys[keyNum - 1]);
+    }
+  };
+  handleClick = e => {
     switch (e.target.id) {
       case 'right_sidebar_favorite':
         this.props.editSamples(
@@ -212,54 +246,6 @@ class RightSidebar extends React.Component {
           { rating: 0 }
         );
         this.setState({ rating: 0 });
-        break;
-      case 'key1':
-        keyVal = params === 'major' ? 'C' : 'a';
-        this.changeKey(keyVal);
-        break;
-      case 'key2':
-        keyVal = params === 'major' ? 'G' : 'e';
-        this.changeKey(keyVal);
-        break;
-      case 'key3':
-        keyVal = params === 'major' ? 'D' : 'b';
-        this.changeKey(keyVal);
-        break;
-      case 'key4':
-        keyVal = params === 'major' ? 'A' : 'f♯';
-        this.changeKey(keyVal);
-        break;
-      case 'key5':
-        keyVal = params === 'major' ? 'E' : 'c♯';
-        this.changeKey(keyVal);
-        break;
-      case 'key6':
-        keyVal = params === 'major' ? 'B' : 'g♯';
-        this.changeKey(keyVal);
-        break;
-      case 'key7':
-        keyVal = params === 'major' ? 'G♭' : 'e♭';
-        this.changeKey(keyVal);
-        break;
-      case 'key8':
-        keyVal = params === 'major' ? 'D♭' : 'b♭';
-        this.changeKey(keyVal);
-        break;
-      case 'key9':
-        keyVal = params === 'major' ? 'A♭' : 'f';
-        this.changeKey(keyVal);
-        break;
-      case 'key10':
-        keyVal = params === 'major' ? 'E♭' : 'c';
-        this.changeKey(keyVal);
-        break;
-      case 'key11':
-        keyVal = params === 'major' ? 'B♭' : 'g';
-        this.changeKey(keyVal);
-        break;
-      case 'key12':
-        keyVal = params === 'major' ? 'F' : 'd';
-        this.changeKey(keyVal);
         break;
       default:
         break;
@@ -375,7 +361,7 @@ class RightSidebar extends React.Component {
                   collapseAction={() => this.collapsePanel('key')}
                 >
                   <CircleOfFifths
-                    handleClick={this.handleClick}
+                    handleClick={this.handleKeyClick}
                     activeKey={this.state.key.value}
                   />
                 </DropdownPanel>

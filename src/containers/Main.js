@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Main from '../components/App/Home/Main/Main';
-import { addSamples } from '../actions';
+import { addSamples, resetFilters } from '../actions';
 import { getDisplayedCategory } from '../selectors';
 
 const mapStateToProps = state => ({
@@ -9,4 +9,4 @@ const mapStateToProps = state => ({
   displayedCategory: getDisplayedCategory(state)
 });
 
-export default connect(mapStateToProps, { addSamples })(Main);
+export default connect(mapStateToProps, { addSamples, resetFilters })(Main);

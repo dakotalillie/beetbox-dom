@@ -9,7 +9,7 @@ import {
 } from 'react-bootstrap';
 import './Header.css';
 
-const Header = ({ displayedCategory, addSamples }) => {
+const Header = ({ displayedCategory, addSamples, resetFilters }) => {
   let input;
   return (
     <div className="header">
@@ -48,6 +48,7 @@ const Header = ({ displayedCategory, addSamples }) => {
                 bsStyle="primary"
                 bsSize="large"
                 className="reset_filters_button"
+                onClick={resetFilters}
               >
                 Reset Filters
               </Button>
