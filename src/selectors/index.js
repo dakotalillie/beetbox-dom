@@ -42,6 +42,16 @@ export const getDisplayedSamples = createSelector(
         return true;
       });
     }
+    if (filters.sampleType) {
+      newSamples = newSamples.filter(
+        sample => sample.sample_type === filters.sampleType
+      );
+    }
+    if (filters.instruments.length) {
+      newSamples = newSamples.filter(sample =>
+        filters.instruments.includes(sample.instrument)
+      );
+    }
     switch (filters.orderBy.column) {
       case 'name':
         newSamples = newSamples.sort((a, b) => {

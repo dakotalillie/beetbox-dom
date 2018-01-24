@@ -9,8 +9,11 @@ const FilterArea = ({
   tags,
   filters,
   displayedSamples,
+  samples,
   setSampleSearch,
-  changeTags
+  changeTags,
+  changeSampleType,
+  changeInstrument
 }) => {
   return (
     <div className="filter_area">
@@ -19,7 +22,13 @@ const FilterArea = ({
           <SearchBar setSampleSearch={setSampleSearch} />
         </Row>
         <Row>
-          <FilterButtons />
+          <FilterButtons
+            filters={filters}
+            samples={samples}
+            changeSampleType={changeSampleType}
+            displayedSamples={displayedSamples}
+            changeInstrument={changeInstrument}
+          />
         </Row>
         <Row>
           <TagsArea

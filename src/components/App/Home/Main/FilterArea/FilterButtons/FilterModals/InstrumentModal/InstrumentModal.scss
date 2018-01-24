@@ -1,0 +1,16 @@
+@import '../../../../../../../../styles/colors.scss';
+
+.modal.instrument_modal {
+  top: 279px;
+  right: initial;
+  .modal-content {
+    background-color: $lightGrey;
+    color: $darkestGrey;
+    padding: 15px;
+    width: 375px;
+    .container {
+      padding: 0;
+      width: 100%;
+    }
+  }
+}

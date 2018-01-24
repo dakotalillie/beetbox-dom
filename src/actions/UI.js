@@ -7,7 +7,9 @@ import {
   TOGGLE_ALL_SAMPLES_SELECT,
   REORDER_SAMPLES,
   CHANGE_CATEGORY,
-  CHANGE_TAGS
+  CHANGE_TAGS,
+  CHANGE_SAMPLE_TYPE,
+  CHANGE_INSTRUMENT
 } from '../constants/actionTypes';
 
 export const toggleSidebar = () => {
@@ -84,6 +86,24 @@ export const changeTags = (tags = []) => {
     type: CHANGE_TAGS,
     payload: {
       tags
+    }
+  };
+};
+
+export const changeSampleType = (type = '') => {
+  return {
+    type: CHANGE_SAMPLE_TYPE,
+    payload: {
+      type
+    }
+  };
+};
+
+export const changeInstrument = instrument => {
+  return {
+    type: CHANGE_INSTRUMENT,
+    payload: {
+      instrument
     }
   };
 };

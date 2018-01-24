@@ -7,7 +7,9 @@ export {
   toggleAllSamplesSelect,
   reorderSamples,
   changeCategory,
-  changeTags
+  changeTags,
+  changeSampleType,
+  changeInstrument
 } from './UI';
 
 export { login, fetchCurrentUser, noToken } from './auth';
