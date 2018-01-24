@@ -33,7 +33,7 @@ export const getDisplayedSamples = createSelector(
       default:
         break;
     }
-    if (filters.tags) {
+    if (filters.tags.length) {
       newSamples = newSamples.filter(sample => {
         // a sample's tags must match every tag in the filter array
         for (let tagId of filters.tags) {
@@ -55,7 +55,8 @@ export const getDisplayedSamples = createSelector(
     // tempo
     newSamples = newSamples.filter(
       sample =>
-        sample.tempo > filters.tempo.low && sample.tempo < filters.tempo.high
+        sample.tempo === null ||
+        (sample.tempo > filters.tempo.low && sample.tempo < filters.tempo.high)
     );
     if (filters.key.length) {
       newSamples = newSamples.filter(sample =>

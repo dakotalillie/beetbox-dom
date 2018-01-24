@@ -7,24 +7,96 @@ import SampleRow from './SampleRow/SampleRow';
 class SampleBrowser extends React.Component {
   state = {
     focusedSample: '',
-    displayDropzone: false
+    lastSelected: '',
+    displayDropzone: false,
+    multiSelect: []
   };
   componentDidMount = () => {
     document.addEventListener('keyup', e => {
       if (this.state.focusedSample) {
-        const oldIndex = this.props.displayedSamples.findIndex(
+        const focusedSampleIndex = this.props.displayedSamples.findIndex(
           sample => sample.id === this.state.focusedSample
         );
-        let newSampleId;
+        const lastSelectedIndex = this.props.displayedSamples.findIndex(
+          sample => sample.id === this.state.lastSelected
+        );
+        const maxIndex = this.props.displayedSamples.length - 1;
+        let boundaryTestSelected;
+        let boundaryTestFocused;
+        let next;
         if (e.key === 'ArrowDown') {
-          if (oldIndex < this.props.displayedSamples.length - 1) {
-            newSampleId = this.props.displayedSamples[oldIndex + 1].id;
-            this.setState({ focusedSample: newSampleId });
-          }
+          boundaryTestSelected = lastSelectedIndex < maxIndex;
+          boundaryTestFocused = focusedSampleIndex < maxIndex;
+          next = 1;
         } else if (e.key === 'ArrowUp') {
-          if (oldIndex > 0) {
-            newSampleId = this.props.displayedSamples[oldIndex - 1].id;
-            this.setState({ focusedSample: newSampleId });
+          boundaryTestSelected = lastSelectedIndex > 0;
+          boundaryTestFocused = focusedSampleIndex > 0;
+          next = -1;
+        }
+        let newSampleId;
+        if (!e.shiftKey) {
+          if (this.state.lastSelected) {
+            if (boundaryTestSelected) {
+              newSampleId = this.props.displayedSamples[
+                lastSelectedIndex + next
+              ].id;
+              this.setState({
+                focusedSample: newSampleId,
+                multiSelect: [],
+                lastSelected: ''
+              });
+              this.props.selectSample(newSampleId);
+            }
+          } else if (this.state.focusedSample) {
+            if (boundaryTestFocused) {
+              newSampleId = this.props.displayedSamples[
+                focusedSampleIndex + next
+              ].id;
+              this.setState({
+                focusedSample: newSampleId
+              });
+              this.props.selectSample(newSampleId);
+            }
+          }
+        } else {
+          if (!this.state.lastSelected && boundaryTestFocused) {
+            newSampleId = this.props.displayedSamples[focusedSampleIndex + next]
+              .id;
+            this.setState(
+              {
+                multiSelect: [this.state.focusedSample, newSampleId],
+                lastSelected: newSampleId
+              },
+              () => {
+                this.props.selectMultipleSamples(this.state.multiSelect);
+              }
+            );
+          } else if (this.state.lastSelected && boundaryTestSelected) {
+            newSampleId = this.props.displayedSamples[lastSelectedIndex + next]
+              .id;
+            if (this.state.multiSelect.includes(newSampleId)) {
+              this.setState(
+                {
+                  multiSelect: this.state.multiSelect.filter(
+                    id => id !== this.state.lastSelected
+                  ),
+                  lastSelected: newSampleId
+                },
+                () => {
+                  this.props.selectMultipleSamples(this.state.multiSelect);
+                }
+              );
+            } else {
+              this.setState(
+                {
+                  multiSelect: [...this.state.multiSelect, newSampleId],
+                  lastSelected: newSampleId
+                },
+                () => {
+                  this.props.selectMultipleSamples(this.state.multiSelect);
+                }
+              );
+            }
           }
         }
       }
@@ -67,6 +139,32 @@ class SampleBrowser extends React.Component {
       }
     }
   };
+  handleClick = (newSample, multiple = false) => {
+    if (!multiple) {
+      this.props.selectSample(newSample.id);
+      this.setState({ multiSelect: [], lastSelected: '' });
+    } else {
+      const oldIndex = this.props.displayedSamples.findIndex(
+        sample => sample.id === this.state.focusedSample
+      );
+      const newIndex = this.props.displayedSamples.findIndex(
+        sample => sample.id === newSample.id
+      );
+      const newSelected = [];
+      if (oldIndex < newIndex) {
+        for (let i = oldIndex; i <= newIndex; i++) {
+          newSelected.push(this.props.displayedSamples[i].id);
+        }
+      } else {
+        for (let i = oldIndex; i >= newIndex; i--) {
+          newSelected.push(this.props.displayedSamples[i].id);
+        }
+      }
+
+      this.props.selectMultipleSamples(newSelected);
+      this.setState({ multiSelect: newSelected, lastSelected: newSample.id });
+    }
+  };
   tableClassName = () => {
     let className = '';
     if (this.props.sidebarOpen && !this.props.rightSidebarOpen) {
@@ -85,13 +183,14 @@ class SampleBrowser extends React.Component {
         <SampleRow
           key={key}
           sample={this.props.displayedSamples[key]}
-          toggleSampleSelect={this.props.toggleSampleSelect}
+          handleClick={this.handleClick}
           focusedSample={this.state.focusedSample}
           changeFocusedSample={this.changeFocusedSample}
           selected={this.props.selectedSamples.find(
             sample => sample.id === this.props.displayedSamples[key].id
           )}
           libraries={this.props.libraries}
+          multiSelect={!!this.state.multiSelect.length}
         />
       );
     });
@@ -102,9 +201,8 @@ class SampleBrowser extends React.Component {
         <Table striped bordered className={this.tableClassName()}>
           <thead>
             <tr>
-              <th />
-              <th />
-              <th>
+              <th className="album_art_col" />
+              <th className="name_col">
                 Name
                 <Glyphicon
                   glyph={
@@ -116,17 +214,19 @@ class SampleBrowser extends React.Component {
                   onClick={() => this.handleReorder('name')}
                 />
               </th>
-              <th>Type</th>
-              <th>Length</th>
-              <th className="favorite_column">
+              <th className="type_col">Type</th>
+              <th className="length_col">Time</th>
+              <th className="favorite_col">
                 <Glyphicon glyph="heart-empty" />
               </th>
-              <th>Tempo</th>
-              <th>Key</th>
-              <th>Rating</th>
+              <th className="tempo_col">Tempo</th>
+              <th className="key_col">Key</th>
+              <th className="rating_col">Rating</th>
             </tr>
           </thead>
-          <tbody>{this.mapSamplesToRows()}</tbody>
+          <tbody className={!this.props.filterAreaOpen ? 'expanded' : ''}>
+            {this.mapSamplesToRows()}
+          </tbody>
         </Table>
         {this.state.displayDropzone ? (
           <Dropzone onDrop={this.onDrop} className="dropzone" ref="dropzone">

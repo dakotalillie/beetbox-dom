@@ -9,7 +9,13 @@ import {
 } from 'react-bootstrap';
 import './Header.css';
 
-const Header = ({ displayedCategory, addSamples, resetFilters }) => {
+const Header = ({
+  displayedCategory,
+  addSamples,
+  resetFilters,
+  filterAreaOpen,
+  toggleFilterArea
+}) => {
   let input;
   return (
     <div className="header">
@@ -17,9 +23,12 @@ const Header = ({ displayedCategory, addSamples, resetFilters }) => {
         <Row className="no_margin">
           <Col sm={6}>
             <h1 className="header_title">{displayedCategory}</h1>
-            <Button className="toggle_filter_area_button">
+            <Button
+              className="toggle_filter_area_button"
+              onClick={toggleFilterArea}
+            >
               <Glyphicon
-                glyph="triangle-bottom"
+                glyph={filterAreaOpen ? 'triangle-bottom' : 'triangle-right'}
                 className="toggle_filter_area_glyph"
               />
             </Button>

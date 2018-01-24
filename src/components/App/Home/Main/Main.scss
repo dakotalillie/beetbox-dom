@@ -14,7 +14,27 @@
         margin-bottom: 30px;
       }
       .filter_row {
-        margin-bottom: 22px;
+        margin-bottom: 0px;
+        #filter-area-panel {
+          background-color: transparent;
+          border: none;
+          margin: auto;
+          margin-bottom: 40px;
+          width: 100%;
+          transition: all 0.3s ease-out;
+          &.pushed {
+            width: calc(100% + 187.5px);
+          }
+          &.pushed_left {
+            width: calc(100% - 365px);
+          }
+          .panel-body {
+            padding: 0px 3px;
+          }
+        }
+      }
+      .sample_browser_row {
+        margin-top: -30px;
       }
     }
   }

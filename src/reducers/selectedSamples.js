@@ -1,18 +1,17 @@
 import {
-  TOGGLE_SAMPLE_SELECT,
+  SELECT_SAMPLE,
   TOGGLE_ALL_SAMPLES_SELECT,
-  RECEIVE_DELETED_SAMPLES
+  RECEIVE_DELETED_SAMPLES,
+  SELECT_MULTIPLE_SAMPLES
 } from '../constants/actionTypes';
 
 const selectedSamples = (state = [], action) => {
   let newState;
   switch (action.type) {
-    case TOGGLE_SAMPLE_SELECT:
-      if (state.find(id => id === action.payload.id)) {
-        return state.filter(id => id !== action.payload.id);
-      } else {
-        return [...state, action.payload.id];
-      }
+    case SELECT_SAMPLE:
+      return [action.payload.id];
+    case SELECT_MULTIPLE_SAMPLES:
+      return action.payload.ids;
     case TOGGLE_ALL_SAMPLES_SELECT:
       if (state.length) {
         return [];

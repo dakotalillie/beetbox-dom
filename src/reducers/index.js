@@ -10,6 +10,7 @@ import tags from './tags';
 import filters from './filters/index';
 import selectedSamples from './selectedSamples';
 import newItemModal from './newItemModal';
+import filterAreaOpen from './filterAreaOpen';
 
 const rootReducer = combineReducers({
   isLoggedIn,
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   rightSidebarOpen,
   filters,
   selectedSamples,
-  newItemModal
+  newItemModal,
+  filterAreaOpen
 });
 
 export default rootReducer;

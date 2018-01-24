@@ -184,9 +184,13 @@ export default FilterButtons;
 
 function getUniqItems(samples, field) {
   const items = Object.keys(samples).map(sampleId => samples[sampleId][field]);
-  const uniqueValues = items.filter(
-    (value, index, self) => self.indexOf(value) === index
-  );
+  const uniqueValues = items.filter((value, index, self) => {
+    if (value !== null) {
+      return self.indexOf(value) === index;
+    } else {
+      return false;
+    }
+  });
   const sortedUniqValues = uniqueValues.sort((a, b) => {
     if (a.toLowerCase() > b.toLowerCase()) return 1;
     else if (a.toLowerCase() < b.toLowerCase()) return -1;

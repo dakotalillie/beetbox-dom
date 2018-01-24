@@ -10,16 +10,26 @@ class SampleRow extends React.Component {
     playing: false,
     selected: false
   };
-  handlePlayback = () => {
+  handlePlayback = e => {
+    e.stopPropagation();
     if (!this.state.playing) {
       this.props.changeFocusedSample(this.props.sample.id);
     }
     this.refs.audio.play();
   };
+  handleClick = (e, sample) => {
+    if (!e.shiftKey) {
+      this.handlePlayback(e);
+      this.props.handleClick(sample);
+    } else {
+      this.props.handleClick(sample, true);
+    }
+  };
   componentWillReceiveProps = nextProps => {
     if (
       nextProps.focusedSample === this.props.sample.id &&
-      this.props.focusedSample !== this.props.sample.id
+      this.props.focusedSample !== this.props.sample.id &&
+      !nextProps.multiSelect
     ) {
       this.refs.audio.play();
     } else if (
@@ -37,24 +47,17 @@ class SampleRow extends React.Component {
   };
   render = () => {
     const sample = this.props.sample;
-    const artworkUrl = this.props.libraries[sample.library_id].artwork_url;
+    const artworkUrl = sample.library_id
+      ? this.props.libraries[sample.library_id].artwork_url
+      : null;
     return (
       <tr
-        className={
-          'sample_row' +
-          (this.props.focusedSample === this.props.sample.id ? ' focused' : '')
-        }
+        className={'sample_row' + (this.props.selected ? ' focused' : '')}
+        onClick={e => this.handleClick(e, sample)}
       >
-        <td>
-          <input
-            type="checkbox"
-            onClick={() => this.props.toggleSampleSelect(sample.id)}
-            checked={this.state.selected}
-          />
-        </td>
         <td
           onClick={this.handlePlayback}
-          className="album_art"
+          className="album_art_col"
           onMouseEnter={() => this.setState({ hovered: true })}
           onMouseLeave={() => this.setState({ hovered: false })}
         >
@@ -68,19 +71,23 @@ class SampleRow extends React.Component {
             src={sample.preview_url}
             ref="audio"
             onPlay={() => this.setState({ playing: true })}
-            onPause={() => this.setState({ playing: false })}
+            onPause={() =>
+              this.setState({
+                playing: false
+              })
+            }
             onEnded={() => this.setState({ playing: false })}
           />
         </td>
-        <td>{sample.name}</td>
-        <td>{sample.sample_type}</td>
-        <td>{formatLength(sample.length)}</td>
-        <td>
+        <td className="name_col">{sample.name}</td>
+        <td className="type_col">{formatType(sample.sample_type)}</td>
+        <td className="length_col">{formatLength(sample.length)}</td>
+        <td className="favorite_col">
           <Glyphicon glyph={sample.favorite ? 'heart' : 'heart-empty'} />
         </td>
-        <td>{sample.tempo ? sample.tempo : '--'}</td>
-        <td>{sample.key ? sample.key : '--'}</td>
-        <td>
+        <td className="tempo_col">{sample.tempo ? sample.tempo : ''}</td>
+        <td className="key_col">{sample.key ? formatKey(sample.key) : ''}</td>
+        <td className="rating_col">
           <ReactStars count={5} size={15} half={false} value={sample.rating} />
         </td>
       </tr>
@@ -102,5 +109,22 @@ const formatLength = length => {
     return `0:${seconds}`;
   } else {
     return seconds;
+  }
+};
+
+const formatKey = key => {
+  if (key === key.toLowerCase()) {
+    return `${key.toUpperCase()}m`;
+  }
+  return key;
+};
+
+const formatType = type => {
+  if (type === 'one-shot') {
+    return <Glyphicon glyph="arrow-right" />;
+  } else if (type === 'loop') {
+    return <Glyphicon glyph="refresh" />;
+  } else {
+    return '';
   }
 };

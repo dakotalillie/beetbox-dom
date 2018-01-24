@@ -6,9 +6,11 @@ const SampleBrowserArea = ({
   currentUser,
   sidebarOpen,
   rightSidebarOpen,
+  filterAreaOpen,
   downloadSamples,
   selectedSamples,
-  toggleSampleSelect,
+  selectSample,
+  selectMultipleSamples,
   toggleAllSamplesSelect,
   addSamples,
   deleteSamples,
@@ -32,13 +34,15 @@ const SampleBrowserArea = ({
       <SampleBrowser
         sidebarOpen={sidebarOpen}
         rightSidebarOpen={rightSidebarOpen}
-        toggleSampleSelect={toggleSampleSelect}
+        selectSample={selectSample}
+        selectMultipleSamples={selectMultipleSamples}
         addSamples={addSamples}
         selectedSamples={selectedSamples}
         displayedSamples={displayedSamples}
         reorderSamples={reorderSamples}
         orderBy={orderBy}
         libraries={libraries}
+        filterAreaOpen={filterAreaOpen}
       />
     </div>
   );

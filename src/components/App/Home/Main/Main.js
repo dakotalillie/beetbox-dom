@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Row } from 'react-bootstrap';
+import { Grid, Panel, Row } from 'react-bootstrap';
 import './Main.css';
 import HamburgerIcon from '../../../../containers/HamburgerIcon';
 import Header from './Header/Header';
@@ -9,9 +9,11 @@ import SampleBrowserArea from '../../../../containers/SampleBrowserArea';
 const Main = ({
   sidebarOpen,
   rightSidebarOpen,
+  filterAreaOpen,
   displayedCategory,
   addSamples,
-  resetFilters
+  resetFilters,
+  toggleFilterArea
 }) => {
   function contentClass() {
     if (
@@ -35,12 +37,28 @@ const Main = ({
               addSamples={addSamples}
               displayedCategory={displayedCategory}
               resetFilters={resetFilters}
+              toggleFilterArea={toggleFilterArea}
+              filterAreaOpen={filterAreaOpen}
             />
           </Row>
           <Row className="filter_row">
-            <FilterArea />
+            <Panel
+              id="filter-area-panel"
+              expanded={filterAreaOpen}
+              onToggle={() => {}}
+              className={
+                (sidebarOpen ? 'pushed' : '') +
+                (rightSidebarOpen ? 'pushed_left' : '')
+              }
+            >
+              <Panel.Collapse>
+                <Panel.Body>
+                  <FilterArea />
+                </Panel.Body>
+              </Panel.Collapse>
+            </Panel>
           </Row>
-          <Row>
+          <Row className="sample_browser_row">
             <SampleBrowserArea />
           </Row>
         </div>

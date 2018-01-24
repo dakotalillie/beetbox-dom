@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import SampleBrowserArea from '../components/App/Home/Main/SampleBrowserArea/SampleBrowserArea';
 import {
   downloadSamples,
-  toggleSampleSelect,
+  selectSample,
+  selectMultipleSamples,
   toggleAllSamplesSelect,
   addSamples,
   deleteSamples,
@@ -15,6 +16,7 @@ const mapStateToProps = state => ({
   currentUser: state.currentUser,
   sampleSearch: state.sampleSearch,
   sidebarOpen: state.sidebarOpen,
+  filterAreaOpen: state.filterAreaOpen,
   rightSidebarOpen: state.rightSidebarOpen,
   selectedSamples: [...state.selectedSamples].map(id => state.samples[id]),
   displayedSamples: getDisplayedSamples(state),
@@ -24,7 +26,8 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   downloadSamples,
-  toggleSampleSelect,
+  selectSample,
+  selectMultipleSamples,
   toggleAllSamplesSelect,
   addSamples,
   deleteSamples,

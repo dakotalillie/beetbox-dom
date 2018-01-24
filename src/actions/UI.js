@@ -2,8 +2,10 @@ import {
   TOGGLE_SIDEBAR,
   TOGGLE_RIGHT_SIDEBAR,
   TOGGLE_NEW_ITEM_MODAL,
+  TOGGLE_FILTER_AREA,
   SET_SAMPLE_SEARCH,
-  TOGGLE_SAMPLE_SELECT,
+  SELECT_SAMPLE,
+  SELECT_MULTIPLE_SAMPLES,
   TOGGLE_ALL_SAMPLES_SELECT,
   REORDER_SAMPLES,
   CHANGE_CATEGORY,
@@ -39,6 +41,12 @@ export const toggleNewItemModal = (item = null, id = null) => {
   };
 };
 
+export const toggleFilterArea = () => {
+  return {
+    type: TOGGLE_FILTER_AREA
+  };
+};
+
 export const setSampleSearch = value => {
   return {
     type: SET_SAMPLE_SEARCH,
@@ -48,11 +56,20 @@ export const setSampleSearch = value => {
   };
 };
 
-export const toggleSampleSelect = id => {
+export const selectSample = id => {
   return {
-    type: TOGGLE_SAMPLE_SELECT,
+    type: SELECT_SAMPLE,
     payload: {
       id
+    }
+  };
+};
+
+export const selectMultipleSamples = ids => {
+  return {
+    type: SELECT_MULTIPLE_SAMPLES,
+    payload: {
+      ids
     }
   };
 };
