@@ -1,5 +1,12 @@
 import React from 'react';
-import { Button, FormGroup, FormControl, HelpBlock } from 'react-bootstrap';
+import {
+  Alert,
+  Button,
+  FormGroup,
+  FormControl,
+  HelpBlock
+} from 'react-bootstrap';
+import { CSSTransitionGroup } from 'react-transition-group';
 import './Login.css';
 
 class Login extends React.Component {
@@ -15,6 +22,12 @@ class Login extends React.Component {
       error: ''
     },
     error: ''
+  };
+
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.error) {
+      this.setState({ error: nextProps.error });
+    }
   };
 
   handleChange = (e, target) => {
@@ -58,9 +71,23 @@ class Login extends React.Component {
 
   render = () => (
     <div className="login">
+      <CSSTransitionGroup
+        transitionName="banner_alert"
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={500}
+      >
+        {this.state.error ? (
+          <Alert bsStyle="danger" className="banner_alert">
+            <p>{this.state.error}</p>
+          </Alert>
+        ) : null}
+      </CSSTransitionGroup>
       <Button
         className="back_button"
-        onClick={() => this.props.changeActive('greeting')}
+        onClick={() => {
+          this.props.resetError();
+          this.props.changeActive('greeting');
+        }}
       >
         Back
       </Button>
@@ -100,7 +127,6 @@ class Login extends React.Component {
         >
           Submit
         </Button>
-        <HelpBlock>{this.state.error}</HelpBlock>
       </form>
     </div>
   );

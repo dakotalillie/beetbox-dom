@@ -1,16 +1,54 @@
+@import '../../../../styles/colors.scss';
+
 .new_item_modal {
-  color: black;
-  .container {
-    padding: 0;
-    width: 100%;
-    .hidden_file_upload {
-      display: none;
+  color: $darkestGrey;
+  .modal-content {
+    background-color: $lightGrey;
+    .btn {
+      border-radius: 3px;
+      &.btn-primary {
+        background-color: $mainRed;
+        border-color: $secondaryRed;
+      }
     }
-    .image_container {
-      text-align: left;
+    .modal-header {
+      border-bottom: none;
+      color: $darkGrey;
+      button.close {
+        color: $darkGrey;
+        opacity: 1;
+        text-shadow: none;
+      }
+      .modal-title {
+        font-size: 2.5rem;
+        text-align: left;
+      }
+    }
+    .modal-footer {
+      border-top: none;
+    }
+    .container {
+      padding: 0;
       width: 100%;
-      .image_preview {
-        width: 70px;
+      .form-control {
+        background-color: transparent;
+        box-shadow: none;
+        border: none;
+        border-bottom: 1px solid $darkGrey;
+        border-radius: 0;
+        &:focus {
+          border-color: $darkestGrey;
+        }
+      }
+      .hidden_file_upload {
+        display: none;
+      }
+      .image_container {
+        text-align: left;
+        width: 100%;
+        .image_preview {
+          width: 70px;
+        }
       }
     }
   }

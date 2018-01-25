@@ -8,6 +8,7 @@ table > tbody > tr.sample_row {
     padding: 5;
     position: relative;
     img {
+      user-select: none;
       width: 20px;
     }
     .play_button {
@@ -22,9 +23,21 @@ table > tbody > tr.sample_row {
       width: 100%;
       span.glyphicon {
         margin-left: -5px;
-        margin-top: 4px;
+        margin-top: 3px;
       }
     }
+  }
+  .instrument_col {
+    user-select: none;
+  }
+  .length_col {
+    user-select: none;
+  }
+  .key_col {
+    user-select: none;
+  }
+  .rating_col {
+    user-select: none;
   }
   &.focused {
     background-color: $mainRed;

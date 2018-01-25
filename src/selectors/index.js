@@ -56,6 +56,7 @@ export const getDisplayedSamples = createSelector(
     newSamples = newSamples.filter(
       sample =>
         sample.tempo === null ||
+        sample.tempo === 0 ||
         (sample.tempo > filters.tempo.low && sample.tempo < filters.tempo.high)
     );
     if (filters.key.length) {
@@ -117,6 +118,9 @@ export const getDisplayedCategory = createSelector(
 
 const alphabetize = (name1, name2) => {
   // are they the same?
+  if (name1 === name2) {
+    return 0;
+  }
   if (name1[0] === name2[0]) {
     return alphabetize(name1.slice(1), name2.slice(1));
   }

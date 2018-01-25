@@ -13,6 +13,13 @@
   border-radius: 3px;
   padding: 20px;
   text-align: center;
+  .banner_alert {
+    border-radius: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+  }
   .back_button {
     background-color: transparent;
     border: none;
@@ -45,5 +52,19 @@
   }
   .submit_button {
     margin-top: 20px;
+  }
+  .banner_alert-enter {
+    top: -100px;
+    &.banner_alert-enter-active {
+      top: 0;
+      transition: top 0.3s ease-out;
+    }
+    .banner_alert-leave {
+      top: 0;
+      &.banner_alert-leave-active {
+        top: -100px;
+        transition: top 0.3s ease-out;
+      }
+    }
   }
 }

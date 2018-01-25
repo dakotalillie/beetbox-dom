@@ -31,6 +31,7 @@
     "react-scripts": "1.0.17",
     "react-select": "^1.2.1",
     "react-selectize": "^3.0.1",
+    "react-spinners": "^0.2.5",
     "react-stars": "^2.2.5",
     "react-transition-group": "^1.2.1",
     "react-treebeard": "^2.1.0",

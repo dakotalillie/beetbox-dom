@@ -7,6 +7,7 @@ import {
   HelpBlock
 } from 'react-bootstrap';
 import './Signup.css';
+import { API_ROOT } from '../../../../constants';
 
 class Signup extends React.Component {
   state = {
@@ -51,12 +52,12 @@ class Signup extends React.Component {
     if (this.checkForErrors()) {
       return;
     }
-    // this.props.signup({
-    //   username: this.state.username.value,
-    //   first_name: this.state.first_name.value,
-    //   last_name: this.state.last_name.value,
-    //   password: this.state.password.value
-    // });
+    this.props.signup({
+      username: this.state.username.value,
+      first_name: this.state.first_name.value,
+      last_name: this.state.last_name.value,
+      password: this.state.password.value
+    });
   };
 
   checkForBlankFields = () => {
@@ -104,89 +105,126 @@ class Signup extends React.Component {
   };
 
   getValidationState = (e, key) => {
-    // const username = this.state.username.value;
-    // const first_name = this.state.first_name.value;
-    // const last_name = this.state.last_name.value;
-    // const password = this.state.password.value;
-    // const retype_password = this.state.retype_password.value;
-    // switch (key) {
-    //   case 'username':
-    //     if (username.length === 0) {
-    //       return;
-    //     } else if (username.length < 3) {
-    //       this.renderError('username', 'username is too short');
-    //     } else if (username.length > 16) {
-    //       this.renderError('username', 'username is too long');
-    //     } else {
-    //       // fetch(`${API_ROOT}/search/users/exact/${username}`)
-    //       //   .then(res => res.json())
-    //       //   .then(json => {
-    //       //     if (json.message === 'taken') {
-    //       //       this.renderError('username', 'username is already taken');
-    //       //     } else if (json.message === 'available') {
-    //       //       this.renderSuccess('username');
-    //       //     }
-    //       //   });
-    //     }
-    //     break;
-    //   case 'first_name':
-    //     if (first_name.length === 0) {
-    //       return;
-    //     } else if (first_name.length === 1) {
-    //       this.renderError('first_name', 'name is too short');
-    //     } else {
-    //       this.renderSuccess('first_name');
-    //       this.capitalize('first_name', first_name);
-    //     }
-    //     break;
-    //   case 'last_name':
-    //     if (last_name.length === 0) {
-    //       return;
-    //     } else if (last_name.length === 1) {
-    //       this.renderError('last_name', 'name is too short');
-    //     } else {
-    //       this.renderSuccess('last_name');
-    //       this.capitalize('last_name', last_name);
-    //     }
-    //     break;
-    //   case 'password':
-    //     if (password.length === 0) {
-    //       return;
-    //     } else if (password.length < 6) {
-    //       this.renderError(
-    //         'password',
-    //         'password must be a minimum of 6 characters'
-    //       );
-    //     } else if (password.length > 32) {
-    //       this.renderError('password', 'password is too long');
-    //     } else if (password.match(/\s/)) {
-    //       this.renderError('password', 'password cannot contain whitespace');
-    //     } else {
-    //       this.renderSuccess('password');
-    //       if (
-    //         this.state.retype_password.validation === 'error' &&
-    //         retype_password === password
-    //       ) {
-    //         this.renderSuccess('retype_password');
-    //       }
-    //     }
-    //     break;
-    //   case 'retype_password':
-    //     if (retype_password.length === 0) {
-    //       return;
-    //     } else if (retype_password !== password) {
-    //       this.renderError('retype_password', 'passwords do not match');
-    //     } else {
-    //       this.renderSuccess('retype_password');
-    //     }
-    //     break;
-    //   default:
-    //     debugger;
-    // }
+    const username = this.state.username.value;
+    const first_name = this.state.first_name.value;
+    const last_name = this.state.last_name.value;
+    const password = this.state.password.value;
+    const retype_password = this.state.retype_password.value;
+    switch (key) {
+      case 'username':
+        let formattedUsername = username.toLowerCase().trim();
+        if (formattedUsername !== username) {
+          const newState = { ...this.state };
+          newState.username.value = formattedUsername;
+          this.setState(newState);
+        }
+        if (formattedUsername.length === 0) {
+          return;
+        } else if (formattedUsername.length < 3) {
+          this.renderError('username', 'username is too short');
+        } else if (formattedUsername.length > 24) {
+          this.renderError('username', 'username is too long');
+        } else if (formattedUsername.match(/\W/)) {
+          this.renderError(
+            'username',
+            'username cannot contain non-alphanumeric characters'
+          );
+        } else {
+          fetch(`${API_ROOT}/search/users/exact/${formattedUsername}`)
+            .then(res => res.json())
+            .then(json => {
+              if (json.message === 'taken') {
+                this.renderError('username', 'username is already taken');
+              } else if (json.message === 'available') {
+                this.renderSuccess('username');
+              }
+            });
+        }
+        break;
+      case 'first_name':
+        if (first_name.length === 0) {
+          return;
+        } else if (first_name.length === 1) {
+          this.renderError('first_name', 'name is too short');
+        } else {
+          this.renderSuccess('first_name');
+          this.capitalize('first_name', first_name);
+        }
+        break;
+      case 'last_name':
+        if (last_name.length === 0) {
+          return;
+        } else if (last_name.length === 1) {
+          this.renderError('last_name', 'name is too short');
+        } else {
+          this.renderSuccess('last_name');
+          this.capitalize('last_name', last_name);
+        }
+        break;
+      case 'password':
+        if (password.length === 0) {
+          return;
+        } else if (password.length < 6) {
+          this.renderError(
+            'password',
+            'password must be a minimum of 6 characters'
+          );
+        } else if (password.length > 32) {
+          this.renderError('password', 'password is too long');
+        } else if (password.match(/\s/)) {
+          this.renderError('password', 'password cannot contain whitespace');
+        } else {
+          this.renderSuccess('password');
+          if (
+            this.state.retype_password.validation === 'error' &&
+            retype_password === password
+          ) {
+            this.renderSuccess('retype_password');
+          }
+        }
+        break;
+      case 'retype_password':
+        if (retype_password.length === 0) {
+          return;
+        } else if (retype_password !== password) {
+          this.renderError('retype_password', 'passwords do not match');
+        } else {
+          this.renderSuccess('retype_password');
+        }
+        break;
+      default:
+        debugger;
+    }
+  };
+
+  getNumberOfErrors = () => {
+    const length = Object.keys(this.state).filter(
+      key => this.state[key].validation === 'error'
+    ).length;
+    switch (length) {
+      case 5:
+        return 'five';
+      case 4:
+        return 'four';
+      case 3:
+        return 'three';
+      case 2:
+        return 'two';
+      case 1:
+        return 'one';
+      case 0:
+      default:
+        return '';
+    }
   };
 
   render = () => (
-    <div className="signup">
+    <div
+      className={
+        'signup ' +
+        (this.getNumberOfErrors() ? `${this.getNumberOfErrors()}_error` : '')
+      }
+    >
       <Button
         className="back_button"
         onClick={() => this.props.changeActive('greeting')}

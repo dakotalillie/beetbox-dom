@@ -23,8 +23,8 @@ const samples = (state = {}, action) => {
       }
       return newState;
     case RECEIVE_DELETED_SAMPLES:
-      for (let id of action.payload.sampleIds) {
-        delete newState[id];
+      for (let sample of action.payload.samples) {
+        delete newState[sample.id];
       }
       return newState;
     default:

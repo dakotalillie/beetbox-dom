@@ -24,11 +24,11 @@ const receiveEditedSamples = samples => {
   };
 };
 
-const receiveDeletedSamples = sampleIds => {
+const receiveDeletedSamples = samples => {
   return {
     type: RECEIVE_DELETED_SAMPLES,
     payload: {
-      sampleIds
+      samples
     }
   };
 };

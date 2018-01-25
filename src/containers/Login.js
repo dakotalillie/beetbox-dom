@@ -1,5 +1,9 @@
 import { connect } from 'react-redux';
 import Login from '../components/App/Welcome/Login/Login';
-import { login } from '../actions';
+import { login, resetError } from '../actions';
 
-export default connect(null, { login })(Login);
+const mapStateToProps = state => ({
+  error: state.currentUser.error
+});
+
+export default connect(mapStateToProps, { login, resetError })(Login);

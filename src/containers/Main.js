@@ -7,7 +7,8 @@ const mapStateToProps = state => ({
   sidebarOpen: state.sidebarOpen,
   rightSidebarOpen: state.rightSidebarOpen,
   filterAreaOpen: state.filterAreaOpen,
-  displayedCategory: getDisplayedCategory(state)
+  displayedCategory: getDisplayedCategory(state),
+  filters: state.filters
 });
 
 export default connect(mapStateToProps, {

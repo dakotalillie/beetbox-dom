@@ -1,0 +1,24 @@
+@import '../../../styles/colors.scss';
+
+.loading_page {
+  height: 100vh;
+  width: 100vw;
+  .center_div {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 200px;
+    width: 150px;
+    margin: auto;
+    // border: 1px solid white;
+    text-align: center;
+    .css-1ylry17 {
+      margin: auto;
+    }
+    h3 {
+      color: $darkGrey;
+    }
+  }
+}

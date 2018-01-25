@@ -13,6 +13,7 @@ class SampleBrowser extends React.Component {
   };
   componentDidMount = () => {
     document.addEventListener('keyup', e => {
+      // ARROW KEYS
       if (this.state.focusedSample) {
         const focusedSampleIndex = this.props.displayedSamples.findIndex(
           sample => sample.id === this.state.focusedSample
@@ -100,6 +101,36 @@ class SampleBrowser extends React.Component {
           }
         }
       }
+      // OTHER KEY COMMANDS
+      if (
+        this.props.selectedSamples.length &&
+        document.activeElement.tagName === 'BODY'
+      ) {
+        switch (e.key) {
+          case 'f':
+            const allFavorited = this.props.selectedSamples.every(
+              sample => sample.favorite === true
+            );
+            this.props.editSamples(
+              this.props.selectedSamples.map(sample => sample.id),
+              { favorite: !allFavorited }
+            );
+            break;
+          case '0':
+          case '1':
+          case '2':
+          case '3':
+          case '4':
+          case '5':
+            this.props.editSamples(
+              this.props.selectedSamples.map(sample => sample.id),
+              { rating: e.key }
+            );
+            break;
+          default:
+            break;
+        }
+      }
     });
     document.addEventListener('dragover', e => {
       const dt = e.dataTransfer;
@@ -114,7 +145,7 @@ class SampleBrowser extends React.Component {
       }
     });
     document.addEventListener('dragleave', e => {
-      if (this.state.dropzoneVisible && (!e.screenX && !e.screenY)) {
+      if (this.state.displayDropzone && (!e.pageX && !e.pageY)) {
         this.setState({ displayDropzone: false });
       }
     });
@@ -125,7 +156,11 @@ class SampleBrowser extends React.Component {
     });
   };
   onDrop = acceptedFiles => {
-    uploadFiles(acceptedFiles, this.props.addSamples);
+    const folders =
+      this.props.filters.category.type === 'folders'
+        ? this.props.filters.category.details
+        : [];
+    uploadFiles(acceptedFiles, this.props.addSamples, folders);
   };
   changeFocusedSample = id => {
     this.setState({ focusedSample: id });
@@ -172,7 +207,7 @@ class SampleBrowser extends React.Component {
     } else if (!this.props.sidebarOpen && this.props.rightSidebarOpen) {
       className = 'pushed_left ';
     }
-    if (this.props.dropzoneVisible) {
+    if (this.state.displayDropzone) {
       className += 'faded';
     }
     return className;
@@ -191,6 +226,7 @@ class SampleBrowser extends React.Component {
           )}
           libraries={this.props.libraries}
           multiSelect={!!this.state.multiSelect.length}
+          editSamples={this.props.editSamples}
         />
       );
     });
@@ -219,6 +255,9 @@ class SampleBrowser extends React.Component {
               <th className="favorite_col">
                 <Glyphicon glyph="heart-empty" />
               </th>
+              <th className="instrument_col">Instrument</th>
+              <th className="genre_col">Genre</th>
+
               <th className="tempo_col">Tempo</th>
               <th className="key_col">Key</th>
               <th className="rating_col">Rating</th>
@@ -242,11 +281,14 @@ export default SampleBrowser;
 
 // helpers
 
-const uploadFiles = (files, addSamples) => {
+const uploadFiles = (files, addSamples, folders = []) => {
   if (files.length > 0) {
     const formData = new FormData();
     for (let i = 0; i < files.length; i++) {
       formData.append(`sample[fullres_file][${i}]`, files[i], files[i].name);
+    }
+    if (folders.length) {
+      formData.append(`sample[folders]`, folders);
     }
     addSamples(formData);
   }

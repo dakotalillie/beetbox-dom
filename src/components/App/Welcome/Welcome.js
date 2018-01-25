@@ -2,7 +2,7 @@ import React from 'react';
 import './Welcome.css';
 import Greeting from './Greeting/Greeting';
 import Login from '../../../containers/Login';
-import Signup from './Signup/Signup';
+import Signup from '../../../containers/Signup';
 
 class Welcome extends React.Component {
   state = {

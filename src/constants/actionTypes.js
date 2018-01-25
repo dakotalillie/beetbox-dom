@@ -21,6 +21,8 @@ export const RESET_FILTERS = 'RESET_FILTERS';
 // Auth
 export const REQUEST_CURRENT_USER = 'REQUEST_CURRENT_USER';
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const RESET_ERROR = 'RESET_ERROR';
 export const NO_TOKEN = 'NO_TOKEN';
 // Fetches
 // samples

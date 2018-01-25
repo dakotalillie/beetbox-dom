@@ -13,7 +13,8 @@ const Main = ({
   displayedCategory,
   addSamples,
   resetFilters,
-  toggleFilterArea
+  toggleFilterArea,
+  filters
 }) => {
   function contentClass() {
     if (
@@ -39,6 +40,7 @@ const Main = ({
               resetFilters={resetFilters}
               toggleFilterArea={toggleFilterArea}
               filterAreaOpen={filterAreaOpen}
+              filters={filters}
             />
           </Row>
           <Row className="filter_row">

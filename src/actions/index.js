@@ -19,7 +19,7 @@ export {
   resetFilters
 } from './UI';
 
-export { login, fetchCurrentUser, noToken } from './auth';
+export { login, fetchCurrentUser, noToken, signup, resetError } from './auth';
 
 export {
   addSamples,

@@ -14,6 +14,7 @@ import 'react-select/dist/react-select.css';
 import './TopArea.css';
 
 const TopArea = ({
+  count,
   name,
   favorite,
   sample_type,
@@ -31,6 +32,11 @@ const TopArea = ({
 }) => {
   return (
     <div className="top_area">
+      <Row>
+        <h4 className="count">
+          Editing {count} Sample{count > 1 ? 's' : ''}
+        </h4>
+      </Row>
       <Row>
         <Col xs={9}>
           <FormGroup>

@@ -3,6 +3,7 @@ import { Redirect, Route } from 'react-router-dom';
 import './App.css';
 import Home from '../../containers/Home';
 import Welcome from './Welcome/Welcome';
+import LoadingPage from './LoadingPage/LoadingPage';
 
 class App extends React.Component {
   componentWillMount = () => {
@@ -22,7 +23,7 @@ class App extends React.Component {
           path="/"
           render={() => {
             if (this.props.loading) {
-              return <div />;
+              return <LoadingPage />;
             } else if (this.props.isLoggedIn) {
               return <Home />;
             } else {

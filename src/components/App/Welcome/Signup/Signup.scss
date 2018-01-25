@@ -13,6 +13,21 @@
   border-radius: 3px;
   padding: 20px;
   text-align: center;
+  &.one_error {
+    height: 535px;
+  }
+  &.two_error {
+    height: 560px;
+  }
+  &.three_error {
+    height: 585px;
+  }
+  &.four_error {
+    height: 610px;
+  }
+  &.five_error {
+    height: 635px;
+  }
   .back_button {
     background-color: transparent;
     border: none;
@@ -46,6 +61,7 @@
       outline: none;
       &:focus {
         border-color: white;
+        box-shadow: none;
       }
     }
     .submit_button {

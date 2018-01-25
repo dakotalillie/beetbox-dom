@@ -1,5 +1,7 @@
 @import '../../../../../../styles/colors.scss';
 
+$total: 370;
+
 .sample_browser {
   position: relative;
   table {
@@ -35,33 +37,43 @@
       border-bottom: none;
     }
     tbody > tr:nth-of-type(odd) {
-      background-color: inherit;
+      background-color: $darkestGrey;
     }
     tbody > tr:nth-of-type(even) {
-      background-color: $darkestGrey;
+      background-color: inherit;
     }
     thead > tr {
       color: $darkGrey;
+      padding-bottom: 5px;
       position: relative;
       .order_arrow {
         cursor: pointer;
-        float: right;
-        margin-top: 5px;
+        font-size: 1.6rem;
+        // float: right;
+        // margin-top: 5px;
+        margin-left: 8px;
+        vertical-align: text-bottom;
       }
     }
     tbody {
-      height: calc(100vh - 533px);
+      height: calc(100vh - 540px);
       overflow-y: auto;
       transition: height 300ms ease-out;
       &.expanded {
-        height: calc(100vh - 253px);
+        height: calc(100vh - 260px);
       }
     }
     .album_art_col {
       width: 40px;
     }
     .name_col {
-      width: calc(100% - 370px);
+      width: calc(50% - #{($total / 2) * 1px});
+    }
+    .instrument_col {
+      width: calc(25% - #{($total / 4) * 1px});
+    }
+    .genre_col {
+      width: calc(25% - #{($total / 4) * 1px});
     }
     .type_col {
       text-align: center;

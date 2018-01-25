@@ -25,6 +25,9 @@ class SampleRow extends React.Component {
       this.props.handleClick(sample, true);
     }
   };
+  handleStarClick = (e, sample) => {
+    this.props.editSamples([sample.id], { rating: e });
+  };
   componentWillReceiveProps = nextProps => {
     if (
       nextProps.focusedSample === this.props.sample.id &&
@@ -85,10 +88,19 @@ class SampleRow extends React.Component {
         <td className="favorite_col">
           <Glyphicon glyph={sample.favorite ? 'heart' : 'heart-empty'} />
         </td>
+        <td className="instrument_col">{sample.instrument}</td>
+        <td className="genre_col">{sample.genre}</td>
+
         <td className="tempo_col">{sample.tempo ? sample.tempo : ''}</td>
         <td className="key_col">{sample.key ? formatKey(sample.key) : ''}</td>
         <td className="rating_col">
-          <ReactStars count={5} size={15} half={false} value={sample.rating} />
+          <ReactStars
+            count={5}
+            size={15}
+            half={false}
+            value={sample.rating}
+            onChange={e => this.handleStarClick(e, sample)}
+          />
         </td>
       </tr>
     );

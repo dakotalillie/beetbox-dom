@@ -14,7 +14,8 @@ const Header = ({
   addSamples,
   resetFilters,
   filterAreaOpen,
-  toggleFilterArea
+  toggleFilterArea,
+  filters
 }) => {
   let input;
   return (
@@ -51,7 +52,13 @@ const Header = ({
                   input = node;
                 }}
                 accept="audio/*"
-                onChange={e => uploadFiles(e.target.files, addSamples)}
+                onChange={e => {
+                  const folders =
+                    filters.category.type === 'folders'
+                      ? filters.category.details
+                      : [];
+                  uploadFiles(e.target.files, addSamples, folders);
+                }}
               />
               <Button
                 bsStyle="primary"
@@ -73,11 +80,14 @@ export default Header;
 
 // helpers
 
-const uploadFiles = (files, addSamples) => {
+const uploadFiles = (files, addSamples, folders = []) => {
   if (files.length > 0) {
     const formData = new FormData();
     for (let i = 0; i < files.length; i++) {
       formData.append(`sample[fullres_file][${i}]`, files[i], files[i].name);
+    }
+    if (folders.length) {
+      formData.append(`sample[folders]`, folders);
     }
     addSamples(formData);
   }

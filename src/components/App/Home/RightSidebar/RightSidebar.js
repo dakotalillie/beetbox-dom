@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Grid, Row } from 'react-bootstrap';
+import { Col, Glyphicon, Grid, Row } from 'react-bootstrap';
 import './RightSidebar.css';
 import CircleOfFifths from './CircleOfFifths/CircleOfFifths';
 import LibraryList from './LibraryList/LibraryList';
@@ -30,7 +30,7 @@ class RightSidebar extends React.Component {
         ? props.selectedSamples[0].sample_type || ''
         : '',
       tempo: allTheSame(props.selectedSamples, 'tempo')
-        ? props.selectedSamples[0].tempo
+        ? props.selectedSamples[0].tempo || ''
         : '',
       rating: allTheSame(props.selectedSamples, 'rating')
         ? props.selectedSamples[0].rating
@@ -99,7 +99,7 @@ class RightSidebar extends React.Component {
         ? nextProps.selectedSamples[0].sample_type || ''
         : '',
       tempo: allTheSame(nextProps.selectedSamples, 'tempo')
-        ? nextProps.selectedSamples[0].tempo
+        ? nextProps.selectedSamples[0].tempo || ''
         : '',
       rating: allTheSame(nextProps.selectedSamples, 'rating')
         ? nextProps.selectedSamples[0].rating
@@ -178,17 +178,31 @@ class RightSidebar extends React.Component {
     }));
   };
   changeKey = keyVal => {
-    this.props.editSamples(
-      this.props.selectedSamples.map(sample => sample.id),
-      { key: keyVal }
-    );
-    this.setState(prevState => ({
-      ...prevState,
-      key: {
-        ...prevState.key,
-        value: keyVal
-      }
-    }));
+    if (keyVal !== this.state.key.value) {
+      this.props.editSamples(
+        this.props.selectedSamples.map(sample => sample.id),
+        { key: keyVal }
+      );
+      this.setState(prevState => ({
+        ...prevState,
+        key: {
+          ...prevState.key,
+          value: keyVal
+        }
+      }));
+    } else {
+      this.props.editSamples(
+        this.props.selectedSamples.map(sample => sample.id),
+        { remove_key: true }
+      );
+      this.setState(prevState => ({
+        ...prevState,
+        key: {
+          ...prevState.key,
+          value: ''
+        }
+      }));
+    }
   };
   handleKeyClick = (keyNum, mode) => {
     const majorKeys = [
@@ -266,22 +280,45 @@ class RightSidebar extends React.Component {
         });
         break;
       case 'tempo':
-        this.props.editSamples(
-          this.props.selectedSamples.map(sample => sample.id),
-          { tempo: Number(this.state.tempo) }
-        );
+        if (Number(this.state.tempo) >= 40 && Number(this.state.tempo) <= 200) {
+          this.props.editSamples(
+            this.props.selectedSamples.map(sample => sample.id),
+            { tempo: Number(this.state.tempo) }
+          );
+        } else if (!this.state.tempo || Number(this.state.tempo) === 0) {
+          this.props.editSamples(
+            this.props.selectedSamples.map(sample => sample.id),
+            { remove_tempo: true }
+          );
+        } else {
+          this.setState({ tempo: '' });
+        }
         break;
       case 'instrument':
-        this.props.editSamples(
-          this.props.selectedSamples.map(sample => sample.id),
-          { instrument: this.state.instrument }
-        );
+        if (this.state.instrument) {
+          this.props.editSamples(
+            this.props.selectedSamples.map(sample => sample.id),
+            { instrument: this.state.instrument }
+          );
+        } else {
+          this.props.editSamples(
+            this.props.selectedSamples.map(sample => sample.id),
+            { remove_instrument: true }
+          );
+        }
         break;
       case 'genre':
-        this.props.editSamples(
-          this.props.selectedSamples.map(sample => sample.id),
-          { genre: this.state.genre }
-        );
+        if (this.state.genre) {
+          this.props.editSamples(
+            this.props.selectedSamples.map(sample => sample.id),
+            { genre: this.state.genre }
+          );
+        } else {
+          this.props.editSamples(
+            this.props.selectedSamples.map(sample => sample.id),
+            { remove_genre: true }
+          );
+        }
         break;
       default:
         break;
@@ -335,9 +372,15 @@ class RightSidebar extends React.Component {
   render = () => {
     return (
       <div className="right_sidebar">
+        <Glyphicon
+          glyph="remove"
+          className="close_sidebar_icon"
+          onClick={this.props.toggleRightSidebar}
+        />
         {this.props.selectedSamples.length ? (
           <Grid className="form_container">
             <TopArea
+              count={this.props.selectedSamples.length}
               name={this.state.name}
               favorite={this.state.favorite}
               sample_type={this.state.sample_type}

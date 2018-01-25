@@ -26,6 +26,13 @@ $color2: #b4ec51;
   -moz-border-image: -moz-linear-gradient($color1, $color2) 1 100%;
   -o-border-image: -o-linear-gradient($color1, $color2) 1 100%;
   border-image: linear-gradient(to bottom, $color1, $color2) 1 100%;
+  .close_sidebar_icon {
+    cursor: pointer;
+    font-size: 2rem;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+  }
   .form_container {
     width: 100%;
     .form-group > .form-control,
@@ -49,7 +56,7 @@ $color2: #b4ec51;
       background-color: transparent;
       border: none;
       color: $darkGrey;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       padding: 0;
       // padding-left: 10px;
     }

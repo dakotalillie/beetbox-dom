@@ -7,7 +7,8 @@ import {
   deleteFolder,
   deleteTag,
   updateTagCount,
-  changeCategory
+  changeCategory,
+  toggleRightSidebar
 } from '../actions';
 
 const mapStateToProps = state => ({
@@ -24,5 +25,6 @@ export default connect(mapStateToProps, {
   deleteFolder,
   deleteTag,
   updateTagCount,
-  changeCategory
+  changeCategory,
+  toggleRightSidebar
 })(RightSidebar);

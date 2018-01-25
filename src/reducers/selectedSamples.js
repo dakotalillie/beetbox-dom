@@ -20,8 +20,8 @@ const selectedSamples = (state = [], action) => {
       }
     case RECEIVE_DELETED_SAMPLES:
       newState = [...state];
-      action.payload.sampleIds.forEach(id => {
-        const index = newState.findIndex(sample => sample.id === id);
+      action.payload.samples.forEach(sam => {
+        const index = newState.findIndex(sample => sample.id === sam.id);
         newState.splice(index, 1);
       });
       return newState;
