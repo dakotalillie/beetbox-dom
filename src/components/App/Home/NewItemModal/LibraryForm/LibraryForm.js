@@ -46,6 +46,7 @@ class LibraryForm extends React.Component {
   };
   submitForm = e => {
     e.preventDefault();
+    if (!this.state.name) return;
     const formData = new FormData();
     formData.append('library[name]', this.state.name);
     if (this.state.file) {

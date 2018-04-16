@@ -53,12 +53,12 @@ export const getDisplayedSamples = createSelector(
       );
     }
     // tempo
-    newSamples = newSamples.filter(
-      sample =>
-        sample.tempo === null ||
-        sample.tempo === 0 ||
-        (sample.tempo > filters.tempo.low && sample.tempo < filters.tempo.high)
-    );
+    if (filters.tempo.low > 40 || filters.tempo.high < 200) {
+      newSamples = newSamples.filter(
+        sample =>
+          sample.tempo > filters.tempo.low && sample.tempo < filters.tempo.high
+      );
+    }
     if (filters.key.length) {
       newSamples = newSamples.filter(sample =>
         filters.key.includes(sample.key)

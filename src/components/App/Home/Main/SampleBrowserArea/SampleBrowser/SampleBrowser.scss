@@ -112,6 +112,13 @@ $total: 370;
     text-align: center;
     top: 0;
     z-index: 50;
+    &.pushed {
+      left: 187.5px;
+      right: 187.5px;
+    }
+    &.pushed_left {
+      width: calc(100% + 187.5px);
+    }
     p {
       color: $lightGrey;
       font-size: 2rem;
