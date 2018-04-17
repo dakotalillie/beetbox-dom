@@ -212,6 +212,15 @@ class SampleBrowser extends React.Component {
     }
     return className;
   };
+  dropzoneClassName = () => {
+    let className = 'dropzone';
+    if (this.props.rightSidebarOpen) {
+      className += ' pushed';
+    } else if (this.props.sidebarOpen) {
+      className += ' pushed_left';
+    }
+    return className;
+  };
   mapSamplesToRows = () => {
     return Object.keys(this.props.displayedSamples).map(key => {
       return (
@@ -268,7 +277,11 @@ class SampleBrowser extends React.Component {
           </tbody>
         </Table>
         {this.state.displayDropzone ? (
-          <Dropzone onDrop={this.onDrop} className="dropzone" ref="dropzone">
+          <Dropzone
+            onDrop={this.onDrop}
+            className={this.dropzoneClassName()}
+            ref="dropzone"
+          >
             <p>Drop The Beet</p>
           </Dropzone>
         ) : null}

@@ -25,6 +25,7 @@ class FolderForm extends React.Component {
   };
   submitForm = e => {
     e.preventDefault();
+    if (!this.state.name) return;
     const formData = new FormData();
     formData.append('folder[name]', this.state.name);
     if (this.state.parent) formData.append('folder[parent]', this.state.parent);

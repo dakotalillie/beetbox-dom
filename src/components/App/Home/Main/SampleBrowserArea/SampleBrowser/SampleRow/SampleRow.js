@@ -14,8 +14,11 @@ class SampleRow extends React.Component {
     e.stopPropagation();
     if (!this.state.playing) {
       this.props.changeFocusedSample(this.props.sample.id);
+      this.refs.audio.play();
+    } else {
+      this.refs.audio.pause();
+      this.refs.audio.currentTime = 0;
     }
-    this.refs.audio.play();
   };
   handleClick = (e, sample) => {
     if (!e.shiftKey) {

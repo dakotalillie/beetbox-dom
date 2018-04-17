@@ -23,6 +23,7 @@ class TagForm extends React.Component {
   };
   submitForm = e => {
     e.preventDefault();
+    if (!this.state.name) return;
     const formData = new FormData();
     formData.append('tag[name]', this.state.name);
     if (!this.state.id) {
